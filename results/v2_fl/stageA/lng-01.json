@@ -1,0 +1,87 @@
+{
+ "task_id": "lng-01",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue mug",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red backpack",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green pen set",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green notebook",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Welcome to the team"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue mug": 1,
+   "green notebook": 2,
+   "green pen set": 3,
+   "red backpack": 3
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Welcome to the team",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 9,
+  "tokens_in": 4942,
+  "tokens_out": 356,
+  "by_tag": {
+   "agent": {
+    "calls": 9,
+    "tin": 4942,
+    "tout": 356
+   }
+  }
+ }
+}

@@ -1,0 +1,78 @@
+{
+ "model": "agentica-org/DeepScaleR-1.5B-Preview",
+ "load_s": 76,
+ "gen_s": 90,
+ "total_tokens": 500970,
+ "settings": {
+  "P": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.9,
+    "finished": 100,
+    "finished_accuracy": 0.9,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1663.0
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.94,
+    "finished": 50,
+    "finished_accuracy": 0.94,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1142.5
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.86,
+    "finished": 50,
+    "finished_accuracy": 0.86,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 2590.5
+   }
+  },
+  "N": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.01,
+    "repetition_rate": 0.0,
+    "accuracy": 0.9,
+    "finished": 99,
+    "finished_accuracy": 0.9090909090909091,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1509
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.96,
+    "finished": 50,
+    "finished_accuracy": 0.96,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1104.0
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.02,
+    "repetition_rate": 0.0,
+    "accuracy": 0.84,
+    "finished": 49,
+    "finished_accuracy": 0.8571428571428571,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 2323
+   }
+  }
+ }
+}

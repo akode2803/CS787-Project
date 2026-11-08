@@ -1,0 +1,79 @@
+{
+ "task_id": "rel-02",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue mug",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red pen set",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "standard"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Welcome to the team"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue mug": 3,
+   "green notebook": 1,
+   "red pen set": 2
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "standard"
+  },
+  "coupon": "SAVE10",
+  "note": "Welcome to the team",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 3931,
+  "tokens_out": 315,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 3931,
+    "tout": 315
+   }
+  }
+ }
+}

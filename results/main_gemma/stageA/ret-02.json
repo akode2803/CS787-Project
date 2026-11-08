@@ -1,0 +1,63 @@
+{
+ "task_id": "ret-02",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "WELCOME5"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Happy birthday!"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black notebook": 1
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "express"
+  },
+  "coupon": "WELCOME5",
+  "note": "Happy birthday!",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 6,
+  "tokens_in": 2853,
+  "tokens_out": 229,
+  "by_tag": {
+   "agent": {
+    "calls": 6,
+    "tin": 2853,
+    "tout": 229
+   }
+  }
+ }
+}

@@ -1,0 +1,79 @@
+{
+ "task_id": "nul-07",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red backpack",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue pen set",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "WELCOME5"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Welcome to the team"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue notebook": 1,
+   "blue pen set": 3,
+   "red backpack": 3
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "express"
+  },
+  "coupon": "WELCOME5",
+  "note": "Welcome to the team",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 4209,
+  "tokens_out": 315,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 4209,
+    "tout": 315
+   }
+  }
+ }
+}

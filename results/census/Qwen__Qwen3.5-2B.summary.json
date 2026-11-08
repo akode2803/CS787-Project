@@ -1,0 +1,78 @@
+{
+ "model": "Qwen/Qwen3.5-2B",
+ "load_s": 85,
+ "gen_s": 287,
+ "total_tokens": 2374639,
+ "settings": {
+  "P": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.44,
+    "repetition_rate": 0.18,
+    "accuracy": 0.57,
+    "finished": 56,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.57,
+    "boxed": 0.65,
+    "median_tokens_finished": 5342.5
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.3,
+    "repetition_rate": 0.2,
+    "accuracy": 0.72,
+    "finished": 35,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.7,
+    "boxed": 0.82,
+    "median_tokens_finished": 4574
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.58,
+    "repetition_rate": 0.16,
+    "accuracy": 0.42,
+    "finished": 21,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.44,
+    "boxed": 0.48,
+    "median_tokens_finished": 5514
+   }
+  },
+  "N": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.72,
+    "repetition_rate": 0.46,
+    "accuracy": 0.4,
+    "finished": 28,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.28,
+    "boxed": 0.54,
+    "median_tokens_finished": 5855.5
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.64,
+    "repetition_rate": 0.44,
+    "accuracy": 0.52,
+    "finished": 18,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.36,
+    "boxed": 0.68,
+    "median_tokens_finished": 5594.5
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.8,
+    "repetition_rate": 0.48,
+    "accuracy": 0.28,
+    "finished": 10,
+    "finished_accuracy": 1.0,
+    "think_closed": 0.2,
+    "boxed": 0.4,
+    "median_tokens_finished": 6365.0
+   }
+  }
+ }
+}

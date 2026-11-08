@@ -1,0 +1,51 @@
+{
+ "task_id": "rev-01",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green notebook",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "express"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green notebook": 2
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "express"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1608,
+  "tokens_out": 150,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1608,
+    "tout": 150
+   }
+  }
+ }
+}

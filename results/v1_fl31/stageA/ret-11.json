@@ -1,0 +1,59 @@
+{
+ "task_id": "ret-11",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black notebook",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black backpack",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black backpack": 1,
+   "black notebook": 3
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 5,
+  "tokens_in": 2288,
+  "tokens_out": 193,
+  "by_tag": {
+   "agent": {
+    "calls": 5,
+    "tin": 2288,
+    "tout": 193
+   }
+  }
+ }
+}

@@ -1,0 +1,79 @@
+{
+ "task_id": "nul-09",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue backpack",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black pen set",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black mug",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "standard"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "WELCOME5"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Thank you for everything"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black mug": 2,
+   "black pen set": 1,
+   "blue backpack": 3
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "standard"
+  },
+  "coupon": "WELCOME5",
+  "note": "Thank you for everything",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 4211,
+  "tokens_out": 315,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 4211,
+    "tout": 315
+   }
+  }
+ }
+}

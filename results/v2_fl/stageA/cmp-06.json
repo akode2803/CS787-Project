@@ -1,0 +1,79 @@
+{
+ "task_id": "cmp-06",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black pen set",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green backpack",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Welcome to the team"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black pen set": 1,
+   "blue lamp": 1,
+   "green backpack": 1
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Welcome to the team",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 3935,
+  "tokens_out": 310,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 3935,
+    "tout": 310
+   }
+  }
+ }
+}

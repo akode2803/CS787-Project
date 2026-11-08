@@ -1,0 +1,63 @@
+{
+ "task_id": "ret-03",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green backpack",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune",
+    "speed": "standard"
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red pen set",
+    "qty": 1
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green backpack": 3,
+   "red pen set": 1
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 6,
+  "tokens_in": 2878,
+  "tokens_out": 239,
+  "by_tag": {
+   "agent": {
+    "calls": 6,
+    "tin": 2878,
+    "tout": 239
+   }
+  }
+ }
+}

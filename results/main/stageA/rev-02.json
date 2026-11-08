@@ -1,0 +1,51 @@
+{
+ "task_id": "rev-02",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune",
+    "speed": "express"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black notebook": 1
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "express"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1728,
+  "tokens_out": 152,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1728,
+    "tout": 152
+   }
+  }
+ }
+}

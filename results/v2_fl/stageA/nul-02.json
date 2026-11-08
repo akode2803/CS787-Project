@@ -1,0 +1,75 @@
+{
+ "task_id": "nul-02",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue notebook",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Thank you for everything"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black lamp": 1,
+   "blue notebook": 2
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Thank you for everything",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 4162,
+  "tokens_out": 306,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 4162,
+    "tout": 306
+   }
+  }
+ }
+}

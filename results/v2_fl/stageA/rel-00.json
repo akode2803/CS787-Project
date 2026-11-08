@@ -1,0 +1,83 @@
+{
+ "task_id": "rel-00",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black pen set",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black backpack",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Congratulations"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black backpack": 1,
+   "black pen set": 3,
+   "red notebook": 1
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Congratulations",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 9,
+  "tokens_in": 4836,
+  "tokens_out": 345,
+  "by_tag": {
+   "agent": {
+    "calls": 9,
+    "tin": 4836,
+    "tout": 345
+   }
+  }
+ }
+}

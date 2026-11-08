@@ -1,0 +1,51 @@
+{
+ "task_id": "add-01",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red notebook",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "red notebook": 3
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1608,
+  "tokens_out": 148,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1608,
+    "tout": 148
+   }
+  }
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "task_id": "nul-05",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red mug",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Thank you for everything"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue lamp": 1,
+   "red mug": 1
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Thank you for everything",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 4162,
+  "tokens_out": 296,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 4162,
+    "tout": 296
+   }
+  }
+ }
+}

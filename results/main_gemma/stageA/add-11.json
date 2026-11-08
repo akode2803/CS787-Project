@@ -1,0 +1,46 @@
+{
+ "task_id": "add-11",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "black notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black notebook": 1
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 3,
+  "tokens_in": 1139,
+  "tokens_out": 110,
+  "by_tag": {
+   "agent": {
+    "calls": 3,
+    "tin": 1139,
+    "tout": 110
+   }
+  }
+ }
+}

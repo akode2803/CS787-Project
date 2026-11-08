@@ -1,0 +1,51 @@
+{
+ "task_id": "add-09",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "blue notebook",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "standard"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue notebook": 2
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1608,
+  "tokens_out": 146,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1608,
+    "tout": 146
+   }
+  }
+ }
+}

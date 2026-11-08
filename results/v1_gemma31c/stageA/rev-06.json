@@ -1,0 +1,47 @@
+{
+ "task_id": "rev-06",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "green mug",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green mug": 3
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 3,
+  "tokens_in": 1154,
+  "tokens_out": 122,
+  "by_tag": {
+   "agent": {
+    "calls": 3,
+    "tin": 1154,
+    "tout": 122
+   }
+  }
+ }
+}

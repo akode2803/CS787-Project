@@ -1,0 +1,87 @@
+{
+ "task_id": "lng-08",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black mug",
+    "qty": 2
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green lamp",
+    "qty": 2
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red backpack",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black pen set",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Congratulations"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black mug": 2,
+   "black pen set": 2,
+   "green lamp": 2,
+   "red backpack": 1
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Congratulations",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 9,
+  "tokens_in": 4913,
+  "tokens_out": 356,
+  "by_tag": {
+   "agent": {
+    "calls": 9,
+    "tin": 4913,
+    "tout": 356
+   }
+  }
+ }
+}

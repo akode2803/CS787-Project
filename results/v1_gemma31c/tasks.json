@@ -1,0 +1,726 @@
+[
+ {
+  "id": "add-00",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 3 blue lamps and ship to Kanpur with standard shipping.",
+  "update": "Please also use coupon SAVE10, and attach a gift note saying \"Welcome to the team\".",
+  "final_request": "Order 3 blue lamps and ship to Kanpur with standard shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "blue lamp": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-01",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 3 red notebooks and ship to Chennai with standard shipping.",
+  "update": "Please also use coupon SAVE10, and attach a gift note saying \"Happy birthday!\".",
+  "final_request": "Order 3 red notebooks and ship to Chennai with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "red notebook": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-02",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 2 black notebooks and ship to Delhi with standard shipping.",
+  "update": "One more thing: apply coupon WELCOME5 and add the gift note \"Congratulations\".",
+  "final_request": "Order 2 black notebooks and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black notebook": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-03",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 1 black lamp and ship to Kanpur with standard shipping.",
+  "update": "Please also use coupon SAVE10, and attach a gift note saying \"Congratulations\".",
+  "final_request": "Order 1 black lamp and ship to Kanpur with standard shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black lamp": 1
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-04",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 2 green backpacks and ship to Mumbai with standard shipping.",
+  "update": "Please also use coupon SAVE10, and attach a gift note saying \"Happy birthday!\".",
+  "final_request": "Order 2 green backpacks and ship to Mumbai with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "green backpack": 2
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-05",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 1 blue pen set and ship to Chennai with standard shipping.",
+  "update": "One more thing: apply coupon WELCOME5 and add the gift note \"Happy birthday!\".",
+  "final_request": "Order 1 blue pen set and ship to Chennai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "blue pen set": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-06",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 1 blue pen set and ship to Mumbai with standard shipping.",
+  "update": "Please also use coupon SAVE10, and attach a gift note saying \"Thank you for everything\".",
+  "final_request": "Order 1 blue pen set and ship to Mumbai with standard shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "blue pen set": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-07",
+  "type": "addition",
+  "variant": "item_speed",
+  "q0": "Order 1 green pen set and ship to Delhi.",
+  "update": "Also add 2 red mug, and make the shipping express.",
+  "final_request": "Order 1 green pen set and ship to Delhi with express shipping. Also 2 red mug.",
+  "expected": {
+   "cart": {
+    "green pen set": 1,
+    "red mug": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-08",
+  "type": "addition",
+  "variant": "coupon_note",
+  "q0": "Order 1 black backpack and ship to Mumbai with standard shipping.",
+  "update": "One more thing: apply coupon SAVE10 and add the gift note \"Happy birthday!\".",
+  "final_request": "Order 1 black backpack and ship to Mumbai with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black backpack": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-09",
+  "type": "addition",
+  "variant": "item_speed",
+  "q0": "Order 2 blue notebooks and ship to Kanpur.",
+  "update": "I forgot: please include 3 green pen set too, and I need express shipping.",
+  "final_request": "Order 2 blue notebooks and ship to Kanpur with express shipping. Also 3 green pen set.",
+  "expected": {
+   "cart": {
+    "blue notebook": 2,
+    "green pen set": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-10",
+  "type": "addition",
+  "variant": "item_speed",
+  "q0": "Order 2 green notebooks and ship to Chennai.",
+  "update": "I forgot: please include 3 green pen set too, and I need express shipping.",
+  "final_request": "Order 2 green notebooks and ship to Chennai with express shipping. Also 3 green pen set.",
+  "expected": {
+   "cart": {
+    "green notebook": 2,
+    "green pen set": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "add-11",
+  "type": "addition",
+  "variant": "item_speed",
+  "q0": "Order 1 black notebook and ship to Chennai.",
+  "update": "I forgot: please include 1 blue pen set too, and I need express shipping.",
+  "final_request": "Order 1 black notebook and ship to Chennai with express shipping. Also 1 blue pen set.",
+  "expected": {
+   "cart": {
+    "black notebook": 1,
+    "blue pen set": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-00",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 3 blue lamps and ship to Chennai with standard shipping.",
+  "update": "Wait, wrong product. I wanted the blue backpack, not the lamp.",
+  "final_request": "Order 3 blue backpacks and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "blue backpack": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-01",
+  "type": "revision",
+  "variant": "qty_speed",
+  "q0": "Order 2 green notebooks and ship to Mumbai with express shipping.",
+  "update": "Correction: I need 4 of them, not 2, and the shipping should be standard.",
+  "final_request": "Order 4 green notebooks and ship to Mumbai with standard shipping.",
+  "expected": {
+   "cart": {
+    "green notebook": 4
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-02",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 1 black notebook and ship to Pune with express shipping.",
+  "update": "Wait, wrong product. I wanted the black mug, not the notebook.",
+  "final_request": "Order 1 black mug and ship to Pune with express shipping.",
+  "expected": {
+   "cart": {
+    "black mug": 1
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-03",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 1 blue notebook and ship to Delhi with express shipping.",
+  "update": "Wait, wrong product. I wanted the blue backpack, not the notebook.",
+  "final_request": "Order 1 blue backpack and ship to Delhi with express shipping.",
+  "expected": {
+   "cart": {
+    "blue backpack": 1
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-04",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 1 blue backpack and ship to Pune with standard shipping.",
+  "update": "Wait, wrong product. I wanted the blue pen set, not the backpack.",
+  "final_request": "Order 1 blue pen set and ship to Pune with standard shipping.",
+  "expected": {
+   "cart": {
+    "blue pen set": 1
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-05",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 3 green mugs and ship to Chennai with express shipping.",
+  "update": "Wait, wrong product. I wanted the green lamp, not the mug.",
+  "final_request": "Order 3 green lamps and ship to Chennai with express shipping.",
+  "expected": {
+   "cart": {
+    "green lamp": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-06",
+  "type": "revision",
+  "variant": "color_city",
+  "q0": "Order 3 green mugs and ship to Delhi with standard shipping.",
+  "update": "Sorry, I meant red, not green, and ship it to Chennai instead of Delhi.",
+  "final_request": "Order 3 red mugs and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "red mug": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-07",
+  "type": "revision",
+  "variant": "qty_speed",
+  "q0": "Order 1 red pen set and ship to Chennai with express shipping.",
+  "update": "Correction: I need 3 of them, not 1, and the shipping should be standard.",
+  "final_request": "Order 3 red pen set and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "red pen set": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-08",
+  "type": "revision",
+  "variant": "color_city",
+  "q0": "Order 2 blue mugs and ship to Pune with express shipping.",
+  "update": "Sorry, I meant green, not blue, and ship it to Delhi instead of Pune.",
+  "final_request": "Order 2 green mugs and ship to Delhi with express shipping.",
+  "expected": {
+   "cart": {
+    "green mug": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-09",
+  "type": "revision",
+  "variant": "qty_speed",
+  "q0": "Order 2 blue backpacks and ship to Pune with standard shipping.",
+  "update": "Correction: I need 3 of them, not 2, and the shipping should be express.",
+  "final_request": "Order 3 blue backpacks and ship to Pune with express shipping.",
+  "expected": {
+   "cart": {
+    "blue backpack": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-10",
+  "type": "revision",
+  "variant": "item_swap",
+  "q0": "Order 2 black lamps and ship to Kanpur with standard shipping.",
+  "update": "Wait, wrong product. I wanted the black pen set, not the lamp.",
+  "final_request": "Order 2 black pen set and ship to Kanpur with standard shipping.",
+  "expected": {
+   "cart": {
+    "black pen set": 2
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rev-11",
+  "type": "revision",
+  "variant": "qty_speed",
+  "q0": "Order 2 red pen set and ship to Mumbai with express shipping.",
+  "update": "Correction: I need 4 of them, not 2, and the shipping should be standard.",
+  "final_request": "Order 4 red pen set and ship to Mumbai with standard shipping.",
+  "expected": {
+   "cart": {
+    "red pen set": 4
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-00",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 1 black lamp and ship to Kanpur with standard shipping. Also add 1 green notebook.",
+  "update": "Actually, drop the green notebook; I don't need it.",
+  "final_request": "Order 1 black lamp and ship to Kanpur with standard shipping.",
+  "expected": {
+   "cart": {
+    "black lamp": 1
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-01",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 red backpacks and ship to Pune with standard shipping. Also add 1 green pen set.",
+  "update": "Actually, drop the green pen set; I don't need it.",
+  "final_request": "Order 3 red backpacks and ship to Pune with standard shipping.",
+  "expected": {
+   "cart": {
+    "red backpack": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-02",
+  "type": "retraction",
+  "variant": "extras",
+  "q0": "Order 1 black notebook and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Actually, skip the gift note and coupon; regular shipping is okay.",
+  "final_request": "Order 1 black notebook and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "black notebook": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-03",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 green backpacks and ship to Pune with standard shipping. Also add 1 red pen set.",
+  "update": "Actually, drop the red pen set; I don't need it.",
+  "final_request": "Order 3 green backpacks and ship to Pune with standard shipping.",
+  "expected": {
+   "cart": {
+    "green backpack": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-04",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 1 blue mug and ship to Chennai with standard shipping. Also add 2 green notebook.",
+  "update": "Actually, drop the green notebook; I don't need it.",
+  "final_request": "Order 1 blue mug and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "blue mug": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-05",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 black lamps and ship to Kanpur with standard shipping. Also add 2 red notebook.",
+  "update": "Actually, drop the red notebook; I don't need it.",
+  "final_request": "Order 3 black lamps and ship to Kanpur with standard shipping.",
+  "expected": {
+   "cart": {
+    "black lamp": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-06",
+  "type": "retraction",
+  "variant": "extras",
+  "q0": "Order 3 red pen set and ship to Kanpur with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Actually, skip the gift note and coupon; regular shipping is okay.",
+  "final_request": "Order 3 red pen set and ship to Kanpur with standard shipping.",
+  "expected": {
+   "cart": {
+    "red pen set": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-07",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 black mugs and ship to Mumbai with standard shipping. Also add 2 red pen set.",
+  "update": "Actually, drop the red pen set; I don't need it.",
+  "final_request": "Order 3 black mugs and ship to Mumbai with standard shipping.",
+  "expected": {
+   "cart": {
+    "black mug": 3
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-08",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 1 black mug and ship to Mumbai with standard shipping. Also add 1 red lamp.",
+  "update": "Actually, drop the red lamp; I don't need it.",
+  "final_request": "Order 1 black mug and ship to Mumbai with standard shipping.",
+  "expected": {
+   "cart": {
+    "black mug": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-09",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 2 black mugs and ship to Delhi with standard shipping. Also add 1 black lamp.",
+  "update": "Actually, drop the black lamp; I don't need it.",
+  "final_request": "Order 2 black mugs and ship to Delhi with standard shipping.",
+  "expected": {
+   "cart": {
+    "black mug": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-10",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 red lamps and ship to Delhi with standard shipping. Also add 2 black mug.",
+  "update": "Actually, drop the black mug; I don't need it.",
+  "final_request": "Order 3 red lamps and ship to Delhi with standard shipping.",
+  "expected": {
+   "cart": {
+    "red lamp": 3
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "ret-11",
+  "type": "retraction",
+  "variant": "item",
+  "q0": "Order 3 black notebooks and ship to Chennai with standard shipping. Also add 1 black backpack.",
+  "update": "Actually, drop the black backpack; I don't need it.",
+  "final_request": "Order 3 black notebooks and ship to Chennai with standard shipping.",
+  "expected": {
+   "cart": {
+    "black notebook": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": null,
+   "checked_out": true
+  }
+ }
+]

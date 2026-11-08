@@ -1,0 +1,78 @@
+{
+ "model": "Qwen/Qwen3-1.7B",
+ "load_s": 56,
+ "gen_s": 273,
+ "total_tokens": 731117,
+ "settings": {
+  "P": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.02,
+    "repetition_rate": 0.01,
+    "accuracy": 0.91,
+    "finished": 98,
+    "finished_accuracy": 0.9285714285714286,
+    "think_closed": 0.98,
+    "boxed": 0.98,
+    "median_tokens_finished": 2031.0
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.98,
+    "finished": 50,
+    "finished_accuracy": 0.98,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1403.0
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.04,
+    "repetition_rate": 0.02,
+    "accuracy": 0.84,
+    "finished": 48,
+    "finished_accuracy": 0.875,
+    "think_closed": 0.96,
+    "boxed": 0.96,
+    "median_tokens_finished": 4059.5
+   }
+  },
+  "N": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.04,
+    "repetition_rate": 0.01,
+    "accuracy": 0.89,
+    "finished": 96,
+    "finished_accuracy": 0.9270833333333334,
+    "think_closed": 0.96,
+    "boxed": 0.96,
+    "median_tokens_finished": 2029.0
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.96,
+    "finished": 50,
+    "finished_accuracy": 0.96,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1477.0
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.08,
+    "repetition_rate": 0.02,
+    "accuracy": 0.82,
+    "finished": 46,
+    "finished_accuracy": 0.8913043478260869,
+    "think_closed": 0.92,
+    "boxed": 0.92,
+    "median_tokens_finished": 4305.5
+   }
+  }
+ }
+}

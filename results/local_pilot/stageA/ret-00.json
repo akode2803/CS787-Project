@@ -1,0 +1,187 @@
+{
+ "task_id": "ret-00",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green notebook",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 4
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 4
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ],
+  [
+   "remove_from_cart",
+   {
+    "sku": "black lamp",
+    "qty": 5
+   }
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green notebook": 1
+  },
+  "shipping": null,
+  "coupon": null,
+  "note": null,
+  "checked_out": false
+ },
+ "llm": {
+  "calls": 25,
+  "tokens_in": 17002,
+  "tokens_out": 1137,
+  "by_tag": {
+   "agent": {
+    "calls": 25,
+    "tin": 17002,
+    "tout": 1137
+   }
+  }
+ }
+}

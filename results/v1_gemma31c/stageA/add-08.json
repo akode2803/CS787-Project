@@ -1,0 +1,47 @@
+{
+ "task_id": "add-08",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "black backpack",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black backpack": 1
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 3,
+  "tokens_in": 1154,
+  "tokens_out": 122,
+  "by_tag": {
+   "agent": {
+    "calls": 3,
+    "tin": 1154,
+    "tout": 122
+   }
+  }
+ }
+}

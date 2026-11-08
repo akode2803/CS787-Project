@@ -1,0 +1,25 @@
+12:12:36 START Qwen/Qwen3.5-0.8B
+12:20:18 END Qwen/Qwen3.5-0.8B code=0 462s
+12:20:23 START Qwen/Qwen3.5-2B
+12:26:47 END Qwen/Qwen3.5-2B code=0 384s
+12:26:52 START Qwen/Qwen3.5-4B
+12:35:59 END Qwen/Qwen3.5-4B code=0 547s
+12:36:04 START deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+12:40:30 END deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B code=0 267s
+12:40:35 START open-thoughts/OpenThinker3-1.5B
+12:44:16 END open-thoughts/OpenThinker3-1.5B code=0 220s
+12:44:21 START LiquidAI/LFM2.5-1.2B-Thinking
+12:47:50 END LiquidAI/LFM2.5-1.2B-Thinking code=0 210s
+12:47:55 START HuggingFaceTB/SmolLM3-3B
+12:52:08 END HuggingFaceTB/SmolLM3-3B code=0 253s
+12:52:13 START microsoft/Phi-4-mini-reasoning
+12:58:53 END microsoft/Phi-4-mini-reasoning code=0 399s
+12:58:58 START Qwen/Qwen3-1.7B
+13:04:37 END Qwen/Qwen3-1.7B code=0 339s
+13:04:42 START Qwen/Qwen3-0.6B
+13:10:30 END Qwen/Qwen3-0.6B code=0 349s
+13:10:35 START agentica-org/DeepScaleR-1.5B-Preview
+13:13:31 END agentica-org/DeepScaleR-1.5B-Preview code=0 176s
+13:13:36 START nvidia/OpenReasoning-Nemotron-1.5B
+13:17:45 END nvidia/OpenReasoning-Nemotron-1.5B code=0 249s
+13:17:50 ALL DONE

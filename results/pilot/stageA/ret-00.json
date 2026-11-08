@@ -1,0 +1,63 @@
+{
+ "task_id": "ret-00",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue mug",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Congratulations"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue mug": 3
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Congratulations",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 6,
+  "tokens_in": 2847,
+  "tokens_out": 211,
+  "by_tag": {
+   "agent": {
+    "calls": 6,
+    "tin": 2847,
+    "tout": 211
+   }
+  }
+ }
+}

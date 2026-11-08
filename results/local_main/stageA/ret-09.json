@@ -1,0 +1,59 @@
+{
+ "task_id": "ret-09",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black mug",
+    "qty": 2
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black lamp": 1,
+   "black mug": 2
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 5,
+  "tokens_in": 2128,
+  "tokens_out": 198,
+  "by_tag": {
+   "agent": {
+    "calls": 5,
+    "tin": 2128,
+    "tout": 198
+   }
+  }
+ }
+}

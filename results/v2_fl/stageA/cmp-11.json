@@ -1,0 +1,71 @@
+{
+ "task_id": "cmp-11",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue lamp",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black backpack",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Congratulations"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black backpack": 2,
+   "blue lamp": 3
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Congratulations",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 7,
+  "tokens_in": 3486,
+  "tokens_out": 265,
+  "by_tag": {
+   "agent": {
+    "calls": 7,
+    "tin": 3486,
+    "tout": 265
+   }
+  }
+ }
+}

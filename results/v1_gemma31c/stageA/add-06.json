@@ -1,0 +1,55 @@
+{
+ "task_id": "add-06",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue pen set",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Mumbai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue pen set": 1
+  },
+  "shipping": {
+   "city": "Mumbai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 5,
+  "tokens_in": 2277,
+  "tokens_out": 195,
+  "by_tag": {
+   "agent": {
+    "calls": 5,
+    "tin": 2277,
+    "tout": 195
+   }
+  }
+ }
+}

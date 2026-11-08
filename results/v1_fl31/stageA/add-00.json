@@ -1,0 +1,51 @@
+{
+ "task_id": "add-00",
+ "actions": [
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "blue lamp",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue lamp": 3
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1609,
+  "tokens_out": 152,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1609,
+    "tout": 152
+   }
+  }
+ }
+}

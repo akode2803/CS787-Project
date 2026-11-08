@@ -1,0 +1,50 @@
+{
+ "task_id": "add-01",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green lamp",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Pune"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green lamp": 1
+  },
+  "shipping": {
+   "city": "Pune",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1710,
+  "tokens_out": 148,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1710,
+    "tout": 148
+   }
+  }
+ }
+}

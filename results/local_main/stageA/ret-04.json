@@ -1,0 +1,55 @@
+{
+ "task_id": "ret-04",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "blue mug",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green notebook",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue mug": 1,
+   "green notebook": 2
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1633,
+  "tokens_out": 159,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1633,
+    "tout": 159
+   }
+  }
+ }
+}

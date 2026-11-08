@@ -1,0 +1,79 @@
+{
+ "task_id": "cmp-09",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red pen set",
+    "qty": 1
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "green lamp",
+    "qty": 3
+   }
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red mug",
+    "qty": 1
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Delhi",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "WELCOME5"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Welcome to the team"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "green lamp": 3,
+   "red mug": 1,
+   "red pen set": 1
+  },
+  "shipping": {
+   "city": "Delhi",
+   "speed": "express"
+  },
+  "coupon": "WELCOME5",
+  "note": "Welcome to the team",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 8,
+  "tokens_in": 4213,
+  "tokens_out": 320,
+  "by_tag": {
+   "agent": {
+    "calls": 8,
+    "tin": 4213,
+    "tout": 320
+   }
+  }
+ }
+}

@@ -1,0 +1,17 @@
+00:28 SETUP on min1
+00:28 LAUNCHED on min1
+00:51 progress: update 2500
+00:53 progress: update 2700
+01:14 progress: update 5000
+01:35 progress: update 7500
+01:37 progress: update 7700
+01:58 progress: update 10100
+02:20 progress: update 12500
+02:40 progress: update 15000
+02:42 progress: update 15200
+03:03 progress: update 17600
+03:24 progress: update 20000
+03:26 progress: update 20200
+03:47 progress: update 22600
+04:08 progress: update 25000
+04:16 FINISHED: DONE updates 25000 best_validation_loss=0.4710 test_loss=0.4420

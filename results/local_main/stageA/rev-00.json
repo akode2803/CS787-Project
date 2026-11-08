@@ -1,0 +1,47 @@
+{
+ "task_id": "rev-00",
+ "actions": [
+  [
+   "add_to_cart",
+   {
+    "sku": "blue lamp",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Chennai",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "blue lamp": 3
+  },
+  "shipping": {
+   "city": "Chennai",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 3,
+  "tokens_in": 1154,
+  "tokens_out": 121,
+  "by_tag": {
+   "agent": {
+    "calls": 3,
+    "tin": 1154,
+    "tout": 121
+   }
+  }
+ }
+}

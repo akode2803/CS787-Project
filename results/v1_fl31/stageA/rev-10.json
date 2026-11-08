@@ -1,0 +1,51 @@
+{
+ "task_id": "rev-10",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "black lamp",
+    "qty": 2
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "standard"
+   }
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "black lamp": 2
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 4,
+  "tokens_in": 1729,
+  "tokens_out": 150,
+  "by_tag": {
+   "agent": {
+    "calls": 4,
+    "tin": 1729,
+    "tout": 150
+   }
+  }
+ }
+}

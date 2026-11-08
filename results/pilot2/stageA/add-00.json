@@ -1,0 +1,55 @@
+{
+ "task_id": "add-00",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red mug",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "standard"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "red mug": 3
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "standard"
+  },
+  "coupon": null,
+  "note": null,
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 5,
+  "tokens_in": 2268,
+  "tokens_out": 183,
+  "by_tag": {
+   "agent": {
+    "calls": 5,
+    "tin": 2268,
+    "tout": 183
+   }
+  }
+ }
+}

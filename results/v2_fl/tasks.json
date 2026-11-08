@@ -1,0 +1,1060 @@
+[
+ {
+  "id": "lng-00",
+  "type": "long",
+  "variant": "op_add",
+  "q0": "Order 3 blue backpacks, 1 black mug, 3 red lamps and 2 blue pen set and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "update": "Small change: also add 2 black notebooks.",
+  "final_request": "Order 3 blue backpacks, 1 black mug, 3 red lamps, 2 blue pen set and 2 black notebooks and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black mug": 1,
+    "black notebook": 2,
+    "blue backpack": 3,
+    "blue pen set": 2,
+    "red lamp": 3
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-01",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 1 blue mug, 3 red backpacks, 3 green pen set and 2 green notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Small change: the notebook should be blue, not green.",
+  "final_request": "Order 1 blue mug, 3 red backpacks, 3 green pen set and 2 blue notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "blue mug": 1,
+    "blue notebook": 2,
+    "green pen set": 3,
+    "red backpack": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-02",
+  "type": "long",
+  "variant": "op_drop",
+  "q0": "Order 3 black notebooks, 2 black lamps, 1 black backpack and 3 red mugs and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Small change: drop the black lamp.",
+  "final_request": "Order 3 black notebooks, 1 black backpack and 3 red mugs and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black backpack": 1,
+    "black notebook": 3,
+    "red mug": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-03",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 2 black notebooks, 3 blue lamps, 2 black backpacks and 2 red mugs and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Small change: the backpack should be blue, not black.",
+  "final_request": "Order 2 black notebooks, 3 blue lamps, 2 blue backpacks and 2 red mugs and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black notebook": 2,
+    "blue backpack": 2,
+    "blue lamp": 3,
+    "red mug": 2
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-04",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 2 blue mugs, 1 blue backpack, 3 green pen set and 3 blue notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Small change: the pen set should be blue, not green.",
+  "final_request": "Order 2 blue mugs, 1 blue backpack, 3 blue pen set and 3 blue notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "blue backpack": 1,
+    "blue mug": 2,
+    "blue notebook": 3,
+    "blue pen set": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-05",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 1 red mug, 2 black notebooks, 1 red lamp and 3 black backpacks and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "update": "Small change: the lamp should be green, not red.",
+  "final_request": "Order 1 red mug, 2 black notebooks, 1 green lamp and 3 black backpacks and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black backpack": 3,
+    "black notebook": 2,
+    "green lamp": 1,
+    "red mug": 1
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-06",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 3 green pen set, 2 black backpacks, 1 green mug and 2 blue notebooks and ship to Chennai with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Small change: the notebook should be green, not blue.",
+  "final_request": "Order 3 green pen set, 2 black backpacks, 1 green mug and 2 green notebooks and ship to Chennai with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black backpack": 2,
+    "green mug": 1,
+    "green notebook": 2,
+    "green pen set": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-07",
+  "type": "long",
+  "variant": "op_qty",
+  "q0": "Order 3 red pen set, 1 blue mug, 1 green notebook and 1 red lamp and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Small change: I need 4 of the red pen set, not 3.",
+  "final_request": "Order 4 red pen set, 1 blue mug, 1 green notebook and 1 red lamp and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "blue mug": 1,
+    "green notebook": 1,
+    "red lamp": 1,
+    "red pen set": 4
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-08",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 2 black mugs, 2 green lamps, 1 red backpack and 2 black pen set and ship to Kanpur with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Small change: the lamp should be black, not green.",
+  "final_request": "Order 2 black mugs, 2 black lamps, 1 red backpack and 2 black pen set and ship to Kanpur with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black lamp": 2,
+    "black mug": 2,
+    "black pen set": 2,
+    "red backpack": 1
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-09",
+  "type": "long",
+  "variant": "op_add",
+  "q0": "Order 3 red mugs, 2 black lamps, 2 black notebooks and 2 blue backpacks and ship to Chennai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Small change: also add 1 black pen set.",
+  "final_request": "Order 3 red mugs, 2 black lamps, 2 black notebooks, 2 blue backpacks and 1 black pen set and ship to Chennai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black lamp": 2,
+    "black notebook": 2,
+    "black pen set": 1,
+    "blue backpack": 2,
+    "red mug": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-10",
+  "type": "long",
+  "variant": "op_color",
+  "q0": "Order 1 green lamp, 2 black notebooks, 3 blue backpacks and 2 black pen set and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Small change: the pen set should be green, not black.",
+  "final_request": "Order 1 green lamp, 2 black notebooks, 3 blue backpacks and 2 green pen set and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black notebook": 2,
+    "blue backpack": 3,
+    "green lamp": 1,
+    "green pen set": 2
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "lng-11",
+  "type": "long",
+  "variant": "op_drop",
+  "q0": "Order 2 red pen set, 2 green lamps, 3 green notebooks and 2 green backpacks and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Small change: drop the red pen set.",
+  "final_request": "Order 2 green lamps, 3 green notebooks and 2 green backpacks and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "green backpack": 2,
+    "green lamp": 2,
+    "green notebook": 3
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-00",
+  "type": "compound",
+  "variant": "op_color+op_no_note+op_speed",
+  "q0": "Order 2 black pen set and 2 green notebooks and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Three changes: the pen set should be blue, not black; forget the gift note; and make the shipping express.",
+  "final_request": "Order 2 blue pen set and 2 green notebooks and ship to Delhi with express shipping, use coupon WELCOME5.",
+  "expected": {
+   "cart": {
+    "blue pen set": 2,
+    "green notebook": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-01",
+  "type": "compound",
+  "variant": "op_city+op_drop+op_no_coupon",
+  "q0": "Order 2 black notebooks, 2 red lamps and 3 black pen set and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Three changes: ship to Mumbai instead of Chennai; drop the red lamp; and skip the coupon.",
+  "final_request": "Order 2 black notebooks and 3 black pen set and ship to Mumbai with express shipping, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black notebook": 2,
+    "black pen set": 3
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-02",
+  "type": "compound",
+  "variant": "op_city+op_drop+op_no_coupon",
+  "q0": "Order 2 green pen set, 2 red notebooks and 1 black mug and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Three changes: ship to Kanpur instead of Chennai; drop the red notebook; and skip the coupon.",
+  "final_request": "Order 2 green pen set and 1 black mug and ship to Kanpur with express shipping, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black mug": 1,
+    "green pen set": 2
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-03",
+  "type": "compound",
+  "variant": "op_city+op_drop+op_no_coupon",
+  "q0": "Order 1 red notebook and 3 green mugs and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Three changes: ship to Mumbai instead of Delhi; drop the green mug; and skip the coupon.",
+  "final_request": "Order 1 red notebook and ship to Mumbai with standard shipping, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "red notebook": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": null,
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-04",
+  "type": "compound",
+  "variant": "op_qty+op_no_coupon+op_add",
+  "q0": "Order 1 red lamp, 3 blue backpacks and 1 green mug and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Three changes: I need 4 of the red lamp, not 1; skip the coupon; and also add 1 blue pen set.",
+  "final_request": "Order 4 red lamps, 3 blue backpacks, 1 green mug and 1 blue pen set and ship to Delhi with express shipping, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "blue backpack": 3,
+    "blue pen set": 1,
+    "green mug": 1,
+    "red lamp": 4
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-05",
+  "type": "compound",
+  "variant": "op_color+op_no_note+op_speed",
+  "q0": "Order 3 green lamps, 3 green pen set and 3 green backpacks and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Three changes: the lamp should be black, not green; forget the gift note; and make the shipping standard.",
+  "final_request": "Order 3 black lamps, 3 green pen set and 3 green backpacks and ship to Chennai with standard shipping, use coupon SAVE10.",
+  "expected": {
+   "cart": {
+    "black lamp": 3,
+    "green backpack": 3,
+    "green pen set": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-06",
+  "type": "compound",
+  "variant": "op_qty+op_no_coupon+op_add",
+  "q0": "Order 1 black pen set, 1 green backpack and 1 blue lamp and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Three changes: I need 2 of the black pen set, not 1; skip the coupon; and also add 3 red notebooks.",
+  "final_request": "Order 2 black pen set, 1 green backpack, 1 blue lamp and 3 red notebooks and ship to Pune with express shipping, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black pen set": 2,
+    "blue lamp": 1,
+    "green backpack": 1,
+    "red notebook": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-07",
+  "type": "compound",
+  "variant": "op_city+op_drop+op_no_coupon",
+  "q0": "Order 2 black mugs, 2 black notebooks and 1 black pen set and ship to Delhi with express shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Three changes: ship to Mumbai instead of Delhi; drop the black notebook; and skip the coupon.",
+  "final_request": "Order 2 black mugs and 1 black pen set and ship to Mumbai with express shipping, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black mug": 2,
+    "black pen set": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-08",
+  "type": "compound",
+  "variant": "op_city+op_drop+op_no_coupon",
+  "q0": "Order 3 green lamps and 1 red backpack and ship to Delhi with express shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Three changes: ship to Pune instead of Delhi; drop the red backpack; and skip the coupon.",
+  "final_request": "Order 3 green lamps and ship to Pune with express shipping, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "green lamp": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-09",
+  "type": "compound",
+  "variant": "op_qty+op_no_coupon+op_add",
+  "q0": "Order 1 red pen set, 3 green lamps and 1 red mug and ship to Delhi with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Three changes: I need 3 of the red pen set, not 1; skip the coupon; and also add 3 black backpacks.",
+  "final_request": "Order 3 red pen set, 3 green lamps, 1 red mug and 3 black backpacks and ship to Delhi with express shipping, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black backpack": 3,
+    "green lamp": 3,
+    "red mug": 1,
+    "red pen set": 3
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-10",
+  "type": "compound",
+  "variant": "op_color+op_no_note+op_speed",
+  "q0": "Order 2 blue backpacks, 1 blue notebook and 1 blue pen set and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Three changes: the backpack should be green, not blue; forget the gift note; and make the shipping express.",
+  "final_request": "Order 2 green backpacks, 1 blue notebook and 1 blue pen set and ship to Mumbai with express shipping, use coupon WELCOME5.",
+  "expected": {
+   "cart": {
+    "blue notebook": 1,
+    "blue pen set": 1,
+    "green backpack": 2
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": null,
+   "checked_out": true
+  }
+ },
+ {
+  "id": "cmp-11",
+  "type": "compound",
+  "variant": "op_qty+op_no_coupon+op_add",
+  "q0": "Order 3 blue lamps and 2 black backpacks and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Three changes: I need 2 of the blue lamp, not 3; skip the coupon; and also add 2 blue pen set.",
+  "final_request": "Order 2 blue lamps, 2 black backpacks and 2 blue pen set and ship to Delhi with express shipping, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black backpack": 2,
+    "blue lamp": 2,
+    "blue pen set": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": null,
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-00",
+  "type": "relative",
+  "variant": "double",
+  "q0": "Order 3 black pen set, 1 black backpack and 1 red notebook and ship to Mumbai with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Double the quantity of the third item.",
+  "final_request": "Order 3 black pen set, 1 black backpack and 2 red notebooks and ship to Mumbai with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black backpack": 1,
+    "black pen set": 3,
+    "red notebook": 2
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-01",
+  "type": "relative",
+  "variant": "more",
+  "q0": "Order 3 red pen set, 2 red backpacks and 3 green notebooks and ship to Pune with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Make the first item 1 more.",
+  "final_request": "Order 4 red pen set, 2 red backpacks and 3 green notebooks and ship to Pune with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "green notebook": 3,
+    "red backpack": 2,
+    "red pen set": 4
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-02",
+  "type": "relative",
+  "variant": "more",
+  "q0": "Order 1 green notebook, 3 blue mugs and 2 red pen set and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Make the first item 2 more.",
+  "final_request": "Order 3 green notebooks, 3 blue mugs and 2 red pen set and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "blue mug": 3,
+    "green notebook": 3,
+    "red pen set": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-03",
+  "type": "relative",
+  "variant": "double",
+  "q0": "Order 2 red backpacks, 2 green notebooks and 1 green mug and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Double the quantity of the first item.",
+  "final_request": "Order 4 red backpacks, 2 green notebooks and 1 green mug and ship to Mumbai with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "green mug": 1,
+    "green notebook": 2,
+    "red backpack": 4
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-04",
+  "type": "relative",
+  "variant": "double",
+  "q0": "Order 2 red backpacks, 3 black lamps and 3 red notebooks and ship to Chennai with standard shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Double the quantity of the first item.",
+  "final_request": "Order 4 red backpacks, 3 black lamps and 3 red notebooks and ship to Chennai with standard shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black lamp": 3,
+    "red backpack": 4,
+    "red notebook": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-05",
+  "type": "relative",
+  "variant": "more",
+  "q0": "Order 3 black lamps, 2 blue mugs and 3 black pen set and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Make the first item 1 more.",
+  "final_request": "Order 4 black lamps, 2 blue mugs and 3 black pen set and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black lamp": 4,
+    "black pen set": 3,
+    "blue mug": 2
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-06",
+  "type": "relative",
+  "variant": "more",
+  "q0": "Order 1 red notebook, 1 blue lamp and 1 blue backpack and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Congratulations\".",
+  "update": "Make the third item 1 more.",
+  "final_request": "Order 1 red notebook, 1 blue lamp and 2 blue backpacks and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "blue backpack": 2,
+    "blue lamp": 1,
+    "red notebook": 1
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-07",
+  "type": "relative",
+  "variant": "double",
+  "q0": "Order 1 blue notebook, 3 green pen set and 2 blue mugs and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "update": "Double the quantity of the third item.",
+  "final_request": "Order 1 blue notebook, 3 green pen set and 4 blue mugs and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "blue mug": 4,
+    "blue notebook": 1,
+    "green pen set": 3
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-08",
+  "type": "relative",
+  "variant": "double",
+  "q0": "Order 3 red mugs, 1 blue backpack and 1 green lamp and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "Double the quantity of the second item.",
+  "final_request": "Order 3 red mugs, 2 blue backpacks and 1 green lamp and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "blue backpack": 2,
+    "green lamp": 1,
+    "red mug": 3
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-09",
+  "type": "relative",
+  "variant": "same_item_new_color",
+  "q0": "Order 3 blue lamps, 1 green backpack and 2 blue pen set and ship to Delhi with express shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Swap the third item for the same thing in black.",
+  "final_request": "Order 3 blue lamps, 1 green backpack and 2 black pen set and ship to Delhi with express shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black pen set": 2,
+    "blue lamp": 3,
+    "green backpack": 1
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-10",
+  "type": "relative",
+  "variant": "same_item_new_color",
+  "q0": "Order 1 black lamp, 3 black pen set and 2 blue mugs and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "Swap the first item for the same thing in red.",
+  "final_request": "Order 1 red lamp, 3 black pen set and 2 blue mugs and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black pen set": 3,
+    "blue mug": 2,
+    "red lamp": 1
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "rel-11",
+  "type": "relative",
+  "variant": "same_item_new_color",
+  "q0": "Order 3 black lamps, 3 green notebooks and 1 black backpack and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Swap the third item for the same thing in red.",
+  "final_request": "Order 3 black lamps, 3 green notebooks and 1 red backpack and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black lamp": 3,
+    "green notebook": 3,
+    "red backpack": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-00",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 black pen set and 3 red backpacks and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "One note: I'm travelling next week, but the order itself stays the same.",
+  "final_request": "Order 1 black pen set and 3 red backpacks and ship to Chennai with express shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black pen set": 1,
+    "red backpack": 3
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-01",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 red pen set, 2 black mugs and 2 black notebooks and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "update": "One note: I'm travelling next week, but the order itself stays the same.",
+  "final_request": "Order 1 red pen set, 2 black mugs and 2 black notebooks and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "black mug": 2,
+    "black notebook": 2,
+    "red pen set": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-02",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 black lamp and 2 blue notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "update": "Just confirming that the order is exactly what I wrote.",
+  "final_request": "Order 1 black lamp and 2 blue notebooks and ship to Pune with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black lamp": 1,
+    "blue notebook": 2
+   },
+   "shipping": {
+    "city": "Pune",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-03",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 2 green pen set, 2 blue mugs and 2 red notebooks and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "update": "Thanks! Please go ahead with the order as it is.",
+  "final_request": "Order 2 green pen set, 2 blue mugs and 2 red notebooks and ship to Chennai with express shipping, use coupon SAVE10, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "blue mug": 2,
+    "green pen set": 2,
+    "red notebook": 2
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-04",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 green mug, 3 blue backpacks and 1 green pen set and ship to Chennai with standard shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Actually, nothing changes. Please keep the order exactly as I described it.",
+  "final_request": "Order 1 green mug, 3 blue backpacks and 1 green pen set and ship to Chennai with standard shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "blue backpack": 3,
+    "green mug": 1,
+    "green pen set": 1
+   },
+   "shipping": {
+    "city": "Chennai",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-05",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 blue lamp and 1 red mug and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "update": "Actually, nothing changes. Please keep the order exactly as I described it.",
+  "final_request": "Order 1 blue lamp and 1 red mug and ship to Delhi with express shipping, use coupon SAVE10, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "blue lamp": 1,
+    "red mug": 1
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "express"
+   },
+   "coupon": "SAVE10",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-06",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 green backpack and 3 blue lamps and ship to Kanpur with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "update": "One note: I'm travelling next week, but the order itself stays the same.",
+  "final_request": "Order 1 green backpack and 3 blue lamps and ship to Kanpur with standard shipping, use coupon WELCOME5, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "blue lamp": 3,
+    "green backpack": 1
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-07",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 blue notebook, 3 red backpacks and 3 blue pen set and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "update": "Actually, nothing changes. Please keep the order exactly as I described it.",
+  "final_request": "Order 1 blue notebook, 3 red backpacks and 3 blue pen set and ship to Mumbai with express shipping, use coupon WELCOME5, with the gift note \"Welcome to the team\".",
+  "expected": {
+   "cart": {
+    "blue notebook": 1,
+    "blue pen set": 3,
+    "red backpack": 3
+   },
+   "shipping": {
+    "city": "Mumbai",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Welcome to the team",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-08",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 3 blue lamps, 2 black notebooks and 2 black pen set and ship to Kanpur with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Actually, nothing changes. Please keep the order exactly as I described it.",
+  "final_request": "Order 3 blue lamps, 2 black notebooks and 2 black pen set and ship to Kanpur with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black notebook": 2,
+    "black pen set": 2,
+    "blue lamp": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-09",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 3 blue backpacks, 1 black pen set and 2 black mugs and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "update": "Just confirming that the order is exactly what I wrote.",
+  "final_request": "Order 3 blue backpacks, 1 black pen set and 2 black mugs and ship to Delhi with standard shipping, use coupon WELCOME5, with the gift note \"Thank you for everything\".",
+  "expected": {
+   "cart": {
+    "black mug": 2,
+    "black pen set": 1,
+    "blue backpack": 3
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "WELCOME5",
+   "note": "Thank you for everything",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-10",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 1 black lamp and 2 blue mugs and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "update": "Just confirming that the order is exactly what I wrote.",
+  "final_request": "Order 1 black lamp and 2 blue mugs and ship to Delhi with standard shipping, use coupon SAVE10, with the gift note \"Happy birthday!\".",
+  "expected": {
+   "cart": {
+    "black lamp": 1,
+    "blue mug": 2
+   },
+   "shipping": {
+    "city": "Delhi",
+    "speed": "standard"
+   },
+   "coupon": "SAVE10",
+   "note": "Happy birthday!",
+   "checked_out": true
+  }
+ },
+ {
+  "id": "nul-11",
+  "type": "null",
+  "variant": "no_change",
+  "q0": "Order 3 red mugs, 1 blue pen set and 3 black lamps and ship to Kanpur with express shipping, use coupon WELCOME5, with the gift note \"Congratulations\".",
+  "update": "Actually, nothing changes. Please keep the order exactly as I described it.",
+  "final_request": "Order 3 red mugs, 1 blue pen set and 3 black lamps and ship to Kanpur with express shipping, use coupon WELCOME5, with the gift note \"Congratulations\".",
+  "expected": {
+   "cart": {
+    "black lamp": 3,
+    "blue pen set": 1,
+    "red mug": 3
+   },
+   "shipping": {
+    "city": "Kanpur",
+    "speed": "express"
+   },
+   "coupon": "WELCOME5",
+   "note": "Congratulations",
+   "checked_out": true
+  }
+ }
+]

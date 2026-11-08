@@ -1,0 +1,78 @@
+{
+ "model": "LiquidAI/LFM2.5-1.2B-Thinking",
+ "load_s": 144,
+ "gen_s": 57,
+ "total_tokens": 604921,
+ "settings": {
+  "P": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.85,
+    "finished": 100,
+    "finished_accuracy": 0.85,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1777.5
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.86,
+    "finished": 50,
+    "finished_accuracy": 0.86,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1402.5
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.84,
+    "finished": 50,
+    "finished_accuracy": 0.84,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 3182.5
+   }
+  },
+  "N": {
+   "all": {
+    "n": 100,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.91,
+    "finished": 100,
+    "finished_accuracy": 0.91,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1815.5
+   },
+   "gsm8k": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.94,
+    "finished": 50,
+    "finished_accuracy": 0.94,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 1410.5
+   },
+   "math": {
+    "n": 50,
+    "loop_rate": 0.0,
+    "repetition_rate": 0.0,
+    "accuracy": 0.88,
+    "finished": 50,
+    "finished_accuracy": 0.88,
+    "think_closed": 1.0,
+    "boxed": 1.0,
+    "median_tokens_finished": 3347.5
+   }
+  }
+ }
+}

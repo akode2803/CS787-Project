@@ -1,0 +1,22 @@
+{
+  "log": "/content/job.log",
+  "drive": "cs787drive:CS787-Diffusion/eval/jobs/eval_speed_gap",
+  "fetch": [
+    [
+      "cs787drive:CS787-Diffusion/runs/qwen2.5-7b/ar-control/best",
+      "/content/adapters/qwen-ar"
+    ],
+    [
+      "cs787drive:CS787-Diffusion/runs/qwen2.5-7b/byod-retrained/best",
+      "/content/adapters/qwen-byod-retrained"
+    ]
+  ],
+  "mirror": [
+    [
+      "/content/eval_out",
+      "cs787drive:CS787-Diffusion/eval/main"
+    ]
+  ],
+  "command": "python3 -m pip uninstall -y -q torchao; cd /content && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --steps 32 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --steps 64 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --steps 128 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 --steps 32 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 --steps 64 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 --steps 128 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 --steps 256 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks he_single,he_multi --out /content/eval_out --gap x0.5 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks he_single,he_multi --out /content/eval_out --gap x1.5 && python3 run_eval.py --arm byod:qwen:/content/adapters/qwen-byod-retrained --name qwen-byod-retrained --tasks he_single,he_multi --out /content/eval_out --gap x2 && python3 run_eval.py --arm ar:qwen:/content/adapters/qwen-ar --name qwen-ar-control --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 && python3 run_eval.py --arm parent:qwen --name qwen-parent --tasks gsm8k --out /content/eval_out --batch 1 --limit 32 && echo ALLDONE",
+  "max_hours": 2.5
+}

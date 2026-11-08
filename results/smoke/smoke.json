@@ -1,0 +1,56 @@
+[
+ {
+  "steps": 32,
+  "q": "What is the capital of France, and why is it famous?",
+  "s": 1.07,
+  "text": "The capital of of France is Paris. It is is famous for its abundance of art, architecture, history, and culture, as as the E of the world."
+ },
+ {
+  "steps": 32,
+  "q": "Natalia sold clips to 48 friends in April, and half as many in May. How many clips did she sell altogether?",
+  "s": 0.83,
+  "text": "Natalia sold 48 / 2 = 48 / 2 = 24 clips in the May =   24\n24 + 48 =  72\n#### #### 72"
+ },
+ {
+  "steps": 32,
+  "q": "Write a Python function that returns the n-th Fibonacci number.",
+  "s": 0.82,
+  "text": "Here is the code to solve this problem: \n```python\ndef nth_fib(n):\n    fib =   0,  1\n    if n == 0 or 1:\n        return fib[0]\n    elif n == 1:\n        n -= 1:\n        return fib[1]\n    else:\n         n = n-1\n        i = 2:\n        fib[n-1] = fib[n-1]\n        fib[n-2] fib[n-2]\n        while i <:\n        return fib[n1]\n```"
+ },
+ {
+  "steps": 64,
+  "q": "What is the capital of France, and why is it famous?",
+  "s": 1.64,
+  "text": "The capital of France is Paris. It is famous for its numerous buildings, monuments, landmarks, gardens, museums, and historical architecture, as as well as of its cultural and artistic heritage. It is considered the center of French politics, economy,, and culture, and is home of the most famous and visited landmarks in the world. Some of include the Louvre, Notre Dame, Palace Palace, and Eiffel. It is is the city of love, the city of fashion, and the of lights."
+ },
+ {
+  "steps": 64,
+  "q": "Natalia sold clips to 48 friends in April, and half as many in May. How many clips did she sell altogether?",
+  "s": 1.64,
+  "text": "Natalia sold 48 friends in April and half as as many in May, which 28. So Natalia sold 24 friends in May. Alto, Natalia sold 48 + 24 = 72 clips altogether."
+ },
+ {
+  "steps": 64,
+  "q": "Write a Python function that returns the n-th Fibonacci number.",
+  "s": 1.63,
+  "text": "Here is the code to solve this problem: \n```python\ndef fibonacci_fib(n):\n    if n <= 1:\n        return n\n    else:\n         return fibonacci_fibib(n-1) fibonacci_fib(n-2)\n```"
+ },
+ {
+  "steps": 128,
+  "q": "What is the capital of France, and why is it famous?",
+  "s": 3.25,
+  "text": "The capital of France is Paris. It is famous for its iconic landmarks such the Eiff, the Louvre, and Notre Dame, and the Se. It is also known for its vibrant culture of art, food,, and fashion.."
+ },
+ {
+  "steps": 128,
+  "q": "Natalia sold clips to 48 friends in April, and half as many in May. How many clips did she sell altogether?",
+  "s": 3.27,
+  "text": "Natalia sold 48 friends in April and half as as many in May, which is 48 / 2 = 4 Natalia sold 24 friends in May. Alto, Natalia sold 48 + 24 = 72 clips altogether."
+ },
+ {
+  "steps": 128,
+  "q": "Write a Python function that returns the n-th Fibonacci number.",
+  "s": 3.26,
+  "text": "Here is the code to solve this problem: \n```python\ndef fibonacci(n):\n    if n <= 0 or n == 1:\n        return n\n    else:\n        return fibonacci(n-1) + fibonacci(n-2)\n```"
+ }
+]

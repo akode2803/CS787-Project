@@ -1,0 +1,11 @@
+23:44 SETUP on qwen1
+23:44 LAUNCHED on qwen1
+23:47 RESUMED from /content/persist/ar_qwen/resume.pt at update 7500
+00:05 progress: update 10000
+00:24 progress: update 12600
+00:43 progress: update 15100
+01:02 progress: update 17600
+01:20 progress: update 20100
+01:39 progress: update 22600
+01:58 progress: update 25000
+02:04 FINISHED: DONE updates 25000 best_validation_loss=0.4913 test_loss=0.4551

@@ -1,0 +1,67 @@
+{
+ "task_id": "ret-06",
+ "actions": [
+  [
+   "list_products",
+   {}
+  ],
+  [
+   "add_to_cart",
+   {
+    "sku": "red pen set",
+    "qty": 3
+   }
+  ],
+  [
+   "set_shipping",
+   {
+    "city": "Kanpur",
+    "speed": "express"
+   }
+  ],
+  [
+   "apply_coupon",
+   {
+    "code": "SAVE10"
+   }
+  ],
+  [
+   "set_gift_note",
+   {
+    "text": "Congratulations"
+   }
+  ],
+  [
+   "view_state",
+   {}
+  ],
+  [
+   "checkout",
+   {}
+  ]
+ ],
+ "state": {
+  "cart": {
+   "red pen set": 3
+  },
+  "shipping": {
+   "city": "Kanpur",
+   "speed": "express"
+  },
+  "coupon": "SAVE10",
+  "note": "Congratulations",
+  "checked_out": true
+ },
+ "llm": {
+  "calls": 7,
+  "tokens_in": 3468,
+  "tokens_out": 268,
+  "by_tag": {
+   "agent": {
+    "calls": 7,
+    "tin": 3468,
+    "tout": 268
+   }
+  }
+ }
+}
