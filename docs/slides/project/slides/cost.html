@@ -1,0 +1,20 @@
+<section id="cost" data-transition="fade" style="background:#FBFAF6;color:#14213D;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">A diffusion LM from scratch is expensive</h2>
+<div style="display:flex;gap:48px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#EEF1F5;border-radius:20px;padding:48px">
+<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#4A5568">LLaDA 8B · pretrained from scratch</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1;color:#14213D">130,000</p>
+<p style="font-size:32px;color:#14213D">GPU-hours · 2.3 trillion tokens</p>
+<p style="font-size:32px;color:#4A5568">≈ $675,000 (authors’ estimate)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#E3EEFB;border-radius:20px;padding:48px">
+<p style="font-size:28px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#1F5FAE">BYOD · convert an AR chat model</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1;color:#1F5FAE">3.2</p>
+<p style="font-size:32px;color:#14213D">GPU-hours · ≤ 102.4M tokens · one RTX PRO 6000</p>
+<p style="font-size:32px;color:#4A5568">≈ $11 (authors’ estimate)</p>
+</div>
+</div>
+<p style="font-size:32px;line-height:1.4;color:#4A5568">Conversion reuses the AR parent, so the parent’s own pretraining is not in BYOD’s number. The dollar figures are illustrative rental estimates, not bills.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7179">Source: BYOD Table 1 and Appendix A (BYOD row: the Llama 3.1 8B conversion).</p>
+<aside>The catch is cost. Pretraining LLaDA from scratch took 130,000 GPU-hours, about 675 thousand dollars by the paper's estimate . BYOD asks: can we convert an existing chat model instead, with LoRA, on one GPU?</aside>
+</section>

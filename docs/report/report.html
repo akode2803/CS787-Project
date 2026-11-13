@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>What Does Diffusion Conversion Buy?</title>
+<style>
+@page { size: A4; margin: 17mm 16mm 18mm 16mm; @bottom-center { content: counter(page) " / " counter(pages); font-family: "Helvetica Neue", Arial, sans-serif; font-size: 8.5pt; color: #898781; } }
+:root { --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#d9d8d0; --zebra:#f6f6f2; --accent:#1c5cab; --sig:#eaf2fc; }
+html { background:#fff; }
+body { font-family: "Charter", "Georgia", serif; font-size: 11.3pt; line-height: 1.5; color: var(--ink); margin: 0; }
+h1 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 20pt; line-height: 1.2; margin: 0 0 4pt; }
+h2 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 14pt; margin: 17pt 0 5pt; break-after: avoid; }
+h3 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11.8pt; margin: 12pt 0 4pt; break-after: avoid; }
+p { margin: 0 0 6pt; text-align: justify; hyphens: auto; }
+.authors { font-family: "Helvetica Neue", Arial, sans-serif; color: var(--ink2); font-size: 9.5pt; margin-bottom: 10pt; }
+.abstract { border-left: 3px solid var(--accent); padding: 4pt 0 4pt 10pt; margin: 8pt 0 10pt; background: #f8f9fc; }
+.abstract p { margin: 0; }
+table.num { border-collapse: collapse; width: 100%; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.2pt;
+  margin: 4pt 0 3pt; break-inside: avoid; font-variant-numeric: tabular-nums; }
+table.num th, table.num td { border-bottom: 0.6pt solid var(--grid); padding: 2.5pt 4pt; text-align: right; vertical-align: top; }
+table.num tr:first-child th { border-bottom: 1pt solid var(--ink2); }
+table.num th:first-child { text-align: left; font-weight: 600; }
+table.num tr:nth-child(even) td { background: var(--zebra); }
+table.num td.sig { background: var(--sig) !important; }
+table.num tr.ar td, table.num tr.ar th { color: var(--ink2); font-style: italic; }
+.ci, .sub { color: var(--muted); font-size: 7.8pt; white-space: nowrap; }
+.na { color: var(--muted); text-align: center !important; }
+.caption { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.2pt; color: var(--ink2); margin: 2pt 0 10pt; text-align: left; }
+figure { margin: 6pt 0 4pt; break-inside: avoid; }
+figure img { width: 100%; display: block; }
+figure.narrow img { width: 82%; margin: 0 auto; }
+.tag { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 7.5pt; font-weight: 700; color: var(--accent); }
+ul { margin: 0 0 6pt 14pt; padding: 0; } li { margin-bottom: 2pt; }
+.box { border: 0.8pt solid var(--grid); border-radius: 3pt; padding: 6pt 9pt; margin: 6pt 0 8pt; break-inside: avoid; }
+.verdict td:last-child { text-align: left; }
+.refs .rn { display:inline-block; width: 26pt; text-indent: 0; color: var(--accent); }
+.refs p { font-size: 9.6pt; text-align: left; margin-bottom: 3pt; padding-left: 26pt; text-indent: -26pt; }
+code { font-family: Menlo, monospace; font-size: 9pt; }
+.pb { break-before: page; }
+.glance { border: 1pt solid var(--accent); border-radius: 4pt; padding: 7pt 10pt 6pt; margin: 4pt 0 12pt; background: #fbfcfe; }
+.glance-t tr { break-inside: avoid; }
+.glance-h { font-family: "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: 11.5pt; color: var(--accent); margin: 0 0 4pt; }
+.glance-t { border-collapse: collapse; width: 100%; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.6pt; }
+.glance-t th { text-align: left; color: var(--ink2); font-weight: 600; border-bottom: 1pt solid var(--ink2); padding: 2pt 4pt; }
+.glance-t td { border-bottom: 0.6pt solid var(--grid); padding: 3pt 4pt; vertical-align: top; }
+.glance-t td:first-child { width: 27%; } .glance-t td.v { width: 15%; font-weight: 700; white-space: nowrap; }
+.v.no { color: #b3261e; } .v.part { color: #9a5b00; }
+.glance-f { font-size: 10.2pt; margin: 5pt 0 0; text-align: left; }
+.exhibit { border: 0.8pt solid var(--grid); border-left: 3pt solid var(--accent); border-radius: 3pt; padding: 6pt 9pt 5pt; margin: 6pt 0 9pt; break-inside: avoid; background:#fcfcfa; }
+.ex-h { font-family: "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: 11pt; margin: 0 0 3pt; text-align:left; }
+.ex-q, .ex-f { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.3pt; color: var(--ink2); margin: 0 0 3pt; text-align:left; }
+.ex-f { margin: 4pt 0 0; }
+.ex-t { border-collapse: collapse; width: 100%; } .ex-t th { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.2pt; text-align: left; color: var(--accent); padding: 3pt 0 1pt; }
+.ex-t th.bad { color: #b3261e; padding-top: 5pt; } .ex-t td { padding: 1pt 0; vertical-align: top; }
+.ex-t td.st { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 8.4pt; color: var(--muted); width: 46pt; white-space: nowrap; }
+.ex-t code { font-size: 8.5pt; color: #17406f; } .ex-t code.badc { color: #b3261e; }
+table.two { width: 100%; border-collapse: collapse; } table.two td { width: 50%; vertical-align: top; padding: 0 6pt 0 0; }
+table.two pre { font-family: Menlo, monospace; font-size: 7.5pt; line-height: 1.4; background: #f3f4f1; padding: 5pt 6pt; margin: 2pt 0 0; border-radius: 3pt; white-space: pre; overflow: hidden; }
+.col-h { font-family: "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: 9.8pt; margin: 0; text-align:left; } .col-h span { font-weight: 400; color: var(--ink2); font-size: 8.6pt; }
+.mut { color: var(--muted); } .ex-t.qa td { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.6pt; padding: 2pt 0; }
+.epi { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12.5pt; font-style: italic; color: var(--accent); border-left: 3pt solid var(--accent); padding-left: 8pt; margin: 4pt 0 8pt; text-align: left; }
+.epi span { display:block; font-style: normal; font-size: 9.2pt; color: var(--ink2); }
+ul.tight { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.4pt; margin: 2pt 0 0 12pt; } ul.tight li { margin-bottom: 2pt; }
+.idbox { border: 0.8pt solid var(--grid); border-radius: 4pt; padding: 7pt 10pt; margin: 6pt 0 10pt; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 9.6pt; color: var(--ink2); }
+.idbox table { width: 100%; border-collapse: collapse; } .idbox td { padding: 1.5pt 8pt 1.5pt 0; vertical-align: top; }
+.idbox td.k { color: var(--muted); width: 74pt; white-space: nowrap; } .idbox b { color: var(--ink); }
+.idbox .who td { width: 25%; padding-bottom: 5pt; } .idbox .who span { display: block; color: var(--muted); font-size: 8.8pt; }
+.key { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10.2pt; background: var(--sig); border-left: 3pt solid var(--accent); padding: 4pt 8pt; margin: 2pt 0 7pt; text-align: left; }
+.key b { color: var(--accent); }
+a.cite { color: var(--accent); text-decoration: none; } .refs a { color: var(--accent); text-decoration: none; }
+pre.snip { font-family: Menlo, monospace; font-size: 8.3pt; line-height: 1.4; background: #f3f4f1; padding: 5pt 7pt; margin: 3pt 0; border-radius: 3pt; white-space: pre; }
+.ok { color: #1a7f37; font-weight: 700; } .bad2 { color: #b3261e; font-weight: 700; }
+</style></head><body>
+
+<h1>What Does Diffusion Conversion Buy?<br><span style="font-weight:400;font-size:12.5pt">A same-data controlled study of LoRA conversion from autoregressive to diffusion language models</span></h1>
+<div class="idbox">
+<table class="who"><tr>
+<td><b>Aryan Kumar</b><span>261110012</span></td><td><b>Manoj Kumar Parida</b><span>251140013</span></td>
+<td><b>Rajdatta Kohale</b><span>251140018</span></td><td><b>Anuj Chaudhary</b><span>210167</span></td></tr></table>
+<table>
+<tr><td class="k">Mentor TA</td><td>Vikas Kushwaha</td></tr>
+<tr><td class="k">Code</td><td><a href="https://github.com/akode2803/cs787-diffusion-conversion">github.com/akode2803/cs787-diffusion-conversion</a></td></tr>
+<tr><td class="k">Project folder</td><td><a href="https://drive.google.com/drive/folders/1rKAYdVt2WyketIIOP5Pch_0L2slWWNuA">drive.google.com/drive/folders/1rKAYdVt2WyketIIOP5Pch_0L2slWWNuA</a> (video, report, weights, results)</td></tr>
+<tr><td class="k">Trained adapters</td><td><a href="https://drive.google.com/drive/folders/1yVh_LSR7i7sPPRZjECHNl1wOB88NTijv">drive.google.com/drive/folders/1yVh_LSR7i7sPPRZjECHNl1wOB88NTijv</a></td></tr>
+<tr><td class="k">Video</td><td><a href="https://drive.google.com/file/d/1S8Fb_2TeZrydohgISQ9e-I_s4oOKz5QO/view">drive.google.com/file/d/1S8Fb_2TeZrydohgISQ9e-I_s4oOKz5QO/view</a></td></tr>
+</table></div>
+
+
+<div class="abstract"><p><b>Abstract.</b> BYOD <a class="cite" href="#ref-kuiper">[10]</a> converts a frozen autoregressive (AR) chat model into
+a masked-diffusion language model by training one LoRA adapter for about three GPU-hours. It compares each conversion
+only with the unchanged original model, so it cannot separate the effect of diffusion from the effect of fine-tuning on
+BYOD's data. We train an AR LoRA control on the same data, with the same adapter, updates and order, for Qwen2.5 7B and
+Ministral 8B, and evaluate the original model, the control, our retrained conversion, the released conversions and
+LLaDA 8B on up to 500 examples per task. Holding data fixed, <b>diffusion costs 30–46 points on code generation</b> on both
+backbones. On Qwen most of the GSM8K drop is caused by the data rather than by diffusion (original 0.92 → control
+0.50). The conversions are <b>17× slower</b> than the original model at batch 16; using fewer steps makes them faster, but at
+every step count they are worse than an AR model at the same speed. Conversion beats the control at single-line code
+infilling on Qwen, but only when told the exact gap length: with 1.5× the length, <b>accuracy falls from 0.73 to 0.25</b>.
+Taught 1,000 new facts with the name in the prompt, the conversion learns 999 forward and answers none in reverse, the
+same as the AR control; taught the same facts as plain statements, the AR control memorises them and the conversion does
+not, so whether masked training helps reverse recall remains untested.
+Conversion is cheap and works, but none of diffusion's claimed advantages survives a fair control here without
+qualification.</p></div>
+<div class="glance">
+<p class="glance-h">Summary of findings: claimed advantages of diffusion under a same-data control</p>
+<table class="glance-t">
+<tr><th>Claimed advantage</th><th>Finding</th><th>Verdict</th></tr>
+<tr><td><b>Faster parallel decoding</b></td><td>17× slower than the original model per answer at batch 16. Each step re-reads the whole sequence with no KV cache.</td><td class="v no">No</td></tr>
+<tr><td><b>Adjustable compute per answer</b></td><td>The number of denoising steps fixes the work per answer in advance, and time falls linearly with it; every setting, however, lies below the AR speed–accuracy curve.</td><td class="v part">Present, below AR</td></tr>
+<tr><td><b>Better infilling from bidirectional context</b></td><td>Beats the same-data AR control on single-line code infilling (+0.14), but only when told the exact gap length; at 1.5× the length it drops from 0.73 to 0.25.</td><td class="v part">Only with known length</td></tr>
+<tr><td><b>Robustness to the reversal curse</b></td><td>With the name in the prompt, neither model answers any reverse question; with name-free training, the conversion did not learn the facts.</td><td class="v no">Not observed</td></tr>
+</table>
+<p class="glance-f">With BYOD's data held fixed, diffusion costs 30–46 points on code. On Qwen, most of the maths drop BYOD reports is caused by the training data, not by diffusion (0.92 → 0.50 for an AR model trained on the same data).</p>
+</div>
+
+
+
+<h2>1. Introduction</h2>
+
+<div class="exhibit">
+<p class="ex-h">A GSM8K answer generated by BYOD-Qwen at 256 and at 32 steps</p>
+<p class="ex-q">Question (GSM8K): “Ali had $21. Leila gave him half of her $100. How much does Ali have now?” Correct answer: 71.</p>
+<table class="ex-t">
+<tr><th colspan="2">BYOD-Qwen with 256 steps: one token per step, answer correct</th></tr>
+<tr><td class="st">step 1</td><td><code>Le░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</code></td></tr><tr><td class="st">step 6</td><td><code>Leila gave Ali $░0░░░░░░░░░░░░░░░░░░░░░░░░░░░░</code></td></tr><tr><td class="st">step 11</td><td><code>Leila gave Ali $100 / 2░░░░░░░░░░░░░░░░░░░░░░░░</code></td></tr><tr><td class="st">step 21</td><td><code>Leila gave Ali $100 / 2 = $50. ⏎ Ali now has $░░ +░░░░░░░░░░░░</code></td></tr><tr><td class="st">step 256</td><td><code>Leila gave Ali $100 / 2 = $50. ⏎ Ali now has $21 + $50 = $71. ⏎ #### 71</code></td></tr>
+<tr><th colspan="2" class="bad">The same model with 32 steps: eight tokens per step, 8× less compute</th></tr>
+<tr><td class="st">final</td><td><code class="badc">Leila gave $10000/221=&lt;&lt;1500/21=55&gt;&gt;55 to Ali. ⏎ Ali now $21+555=21+55=&lt;&lt;55+5=777&gt;&gt;7755 ⏎ #### …</code></td></tr>
+</table>
+<p class="ex-f">░ is a position still masked. Recorded outputs of the released BYOD-Qwen2.5 conversion, replayable in <code>notebooks/tour_of_results.ipynb</code>. Tokens committed in the same step cannot see each other, so with eight per step the arithmetic falls apart. The trade-off is quantified in §3.3.</p>
+</div>
+<p>Diffusion language models generate an answer by starting from a block of mask tokens and filling in positions over
+several steps, in any order. Four advantages are commonly claimed for them: parallel decoding should be faster than
+writing one token at a time; the number of denoising steps should give a compute dial that left-to-right decoding lacks; bidirectional attention should make filling a gap in the middle of text natural; and
+training on randomly masked text, rather than left-to-right prediction, has been suggested as a way around the
+<i>reversal curse</i>, where a model taught "A is B" cannot answer "who is B?" <a class="cite" href="#ref-berglund">[3]</a>. Training such a
+model from scratch is expensive: LLaDA 8B <a class="cite" href="#ref-nie">[11]</a> used about <b>130,000 GPU-hours</b>, according to BYOD.</p>
+<p>BYOD makes the question cheap to study. It keeps an AR model's weights frozen, makes attention bidirectional, and
+trains a <b>rank-1024</b> LoRA adapter <a class="cite" href="#ref-hu">[9]</a> on BYOD's chat data to predict masked answer tokens. Each conversion takes <b>3.1–4.0 hours</b>
+on one Colab GPU, and BYOD-Gemma averages 0.506 over nine benchmarks against LLaDA's 0.519. <b>But BYOD's AR columns are
+the unchanged original models.</b> Any difference between a conversion and its original therefore mixes two effects: what
+diffusion does, and what 25,000 updates on BYOD's data do. BYOD also reports no wall-clock speed, no real infilling task
+(its only infilling check copies the right context) and no reversal test, and it uses <b>125 examples per task</b>
+(roughly ±8 points).</p>
+<p><b>Contribution.</b> We add the missing control: an AR LoRA adapter trained on the same data, in the same order, with
+the same rank, targets, learning rate, schedule and number of updates, differing only in causal attention and the
+next-token loss. With it we measure, on two backbones and up to 500 examples per task:</p>
+<ul>
+<li>the <b>cost of diffusion</b> with the data held fixed;</li>
+<li>how much of BYOD's reported gap <b>the data alone</b> explains;</li>
+<li>the <b>speed–accuracy trade-off</b> offered by the number of diffusion steps;</li>
+<li><b>code infilling</b>, including the effect of telling the model the gap length;</li>
+<li>the <b>reversal curse</b> on 1,000 newly taught facts.</li>
+</ul>
+<p> All hypotheses were written down before the data.</p>
+
+<h2>2. Setup</h2>
+<h3>2.1 Models</h3>
+<p>We use eight evaluation arms. For <b>Qwen2.5 7B Instruct</b> <a class="cite" href="#ref-qwen">[13]</a>: the original model; our AR control; our retrain of the
+BYOD conversion with BYOD's <code>paper.yaml</code> recipe; and the released BYOD-Qwen adapter. For <b>Ministral 8B
+Instruct 2410</b>: the original, our AR control and the released BYOD-Ministral adapter (we had no budget for a second
+retrain). <b>LLaDA 8B Instruct</b>, trained as a diffusion model from scratch, serves as a shared reference. All arms
+load the base models at BYOD's pinned revisions, and BYOD's code is pinned at commit 211d054.</p>
+<p><b>Training.</b> Both the control and the conversion use BYOD's data (<code>Ruurd/LAD-training-1m-256</code>,
+256-token sequences), 25,000 updates at batch 16, learning rate 10<sup>−5</sup> with cosine schedule and 100 warm-up
+steps, LoRA rank 1024 (α = 1024) on <code>q_proj</code> and <code>v_proj</code>, and seed 42. We checked that the two
+runs see identical batches by comparing batch ids at updates 100, 200 and 25,000. The control differs in four
+respects: causal attention, clean (unmasked) input, next-token loss on answer tokens, and no padding loss (BYOD weights
+answer and padding positions 0.9/0.1). Training took 3.0–3.3 h per run on one RTX PRO 6000 (Colab G4). <b>Rank 1024 is not low-rank in practice.</b> On the value projection the update can be full rank, because its output is only 512 wide on Qwen and 1,024 on Ministral (grouped-query attention); on the query projection it is 29% (Qwen) and 25% (Ministral) of full rank. The adapters hold <b>323M (Qwen) and 491M (Ministral) trainable parameters</b>, 4–6% of the model. The conversions trail their originals despite this capacity, so the gaps below are unlikely to come from an adapter that is too small.</p>
+
+<div class="exhibit">
+<p class="ex-h">One training step of the conversion and of the AR control (simplified)</p>
+<table class="two"><tr>
+<td><p class="col-h" style="color:#1c5cab">BYOD conversion <span>(BYOD's trainer, run by <code>train/retrain.py</code>)</span></p>
+<pre>t = uniform(0.001, 1)        # noise level
+x = tokens.clone()
+x[answer &amp; (rand &lt; t)] = MASK  # hide tokens
+h = model(x, attn="bidirectional")
+loss = CE(head(h[masked]),
+          tokens[masked]) / t  # SAME position</pre></td>
+<td><p class="col-h" style="color:#b3541e">AR control, ours <span>(<code>train/ar_control.py</code>)</span></p>
+<pre>
+x = tokens                    # nothing hidden
+
+h = model(x, attn="causal")
+loss = CE(head(h[i]),
+          tokens[i + 1])      # NEXT position</pre></td>
+</tr></table>
+<p class="ex-f"><b>Everything else is shared:</b> the frozen base model, the rank-1024 LoRA on Q and V, the 400,000 training examples and their order, learning rate, schedule and 25,000 updates. So any difference between the two arms is the diffusion part itself. Simplified sketch: BYOD also weights answer and EOS-padding tokens 0.9/0.1, and the control scores answer tokens only. A conversion can be reproduced with BYOD's trainer through <code>train/retrain.py</code> (3–4 GPU-hours); the resulting adapter can be merged into the base weights.</p>
+</div>
+<h3>2.2 Evaluation</h3>
+<p>Every arm gets the same chat prompt (system "You are a helpful assistant.") and the same budget: 256 tokens or
+positions for GSM8K, HumanEval and MBPP, 64 for MMLU and ARC-C. BYOD's prompts, example selection, answer extraction
+and scoring are reused unchanged. Diffusion arms use the LLaDA low-confidence sampler with one token committed per step
+(256 steps for 256 positions) unless stated. Sample sizes: the first 500 GSM8K <a class="cite" href="#ref-cobbe">[6]</a> and ARC-C <a class="cite" href="#ref-clark">[5]</a> questions, 500 seeded MMLU
+<a class="cite" href="#ref-hendrycks">[8]</a> questions, all 164 HumanEval <a class="cite" href="#ref-chen">[4]</a> and 257 MBPP-sanitized <a class="cite" href="#ref-austin">[1]</a> problems, and 500 seeded examples from each of HumanEval
+single-line and multi-line infilling <a class="cite" href="#ref-bavarian">[2]</a>. We report Wilson 95% intervals, and paired differences
+with bootstrap 95% intervals and McNemar's exact test.</p>
+<p><b>Two fairness corrections.</b> (1) The original AR models write long answers: at 256 tokens, 141 of 500 Ministral
+GSM8K answers were cut off. We therefore rescored the AR original and control on GSM8K and HumanEval at 512 tokens. The
+diffusion arms almost never fill their 256 positions (at most 12 answers per task, none correct), so their numbers
+stand. (2) In infilling, a diffusion arm keeps the code around the gap fixed and can only write inside it, whereas an AR
+arm rewrites the whole function and may change that code. We report a <i>strict</i> score, where an AR answer that
+changed the surrounding code counts as wrong (marked * in tables), and keep the lenient score in the appendix files.</p>
+
+<h2>3. Results</h2>
+<p class="epi">“Efficient conversion does not yet produce efficient generation.”<span>Kuiper and Bagheri (2026), §7 (Limitations).</span></p>
+<h3>3.1 With the data held fixed, diffusion costs 30–46 points on code</h3>
+<p class="key">The loss is concentrated in code: <b>30–46 points</b> on HumanEval and MBPP on both backbones, against at most 7 points on MMLU and ARC-C.</p>
+<figure><img src="fig/main.png"></figure>
+<div class="caption"><b>Figure 1.</b> Accuracy of every arm, with 95% Wilson intervals. AR arms are scored at 512 tokens
+on GSM8K and HumanEval (see §2.2); infilling scores are strict.</div>
+
+<div class="caption"><b>Table 1.</b> Qwen2.5 7B. Accuracy with 95% interval. For AR arms on GSM8K and HumanEval the
+512-token score is shown, with the 256-token score below it.</div>
+<table class="num"><tr><th>Task</th><th>Original</th><th>AR control</th><th>Conversion (ours)</th><th>Conversion (released)</th></tr><tr><th>GSM8K</th><td>0.922 <span class="ci">0.90–0.94</span><br><span class="sub">256 tok: 0.648</span></td><td>0.502 <span class="ci">0.46–0.55</span><br><span class="sub">256 tok: 0.502</span></td><td>0.434 <span class="ci">0.39–0.48</span></td><td>0.618 <span class="ci">0.57–0.66</span></td></tr><tr><th>MMLU</th><td>0.720 <span class="ci">0.68–0.76</span></td><td>0.738 <span class="ci">0.70–0.77</span></td><td>0.672 <span class="ci">0.63–0.71</span></td><td>0.672 <span class="ci">0.63–0.71</span></td></tr><tr><th>ARC-C</th><td>0.914 <span class="ci">0.89–0.94</span></td><td>0.914 <span class="ci">0.89–0.94</span></td><td>0.844 <span class="ci">0.81–0.87</span></td><td>0.862 <span class="ci">0.83–0.89</span></td></tr><tr><th>HumanEval</th><td>0.811 <span class="ci">0.74–0.86</span><br><span class="sub">256 tok: 0.695</span></td><td>0.787 <span class="ci">0.72–0.84</span><br><span class="sub">256 tok: 0.726</span></td><td>0.274 <span class="ci">0.21–0.35</span></td><td>0.268 <span class="ci">0.21–0.34</span></td></tr><tr><th>MBPP</th><td>0.739 <span class="ci">0.68–0.79</span></td><td>0.739 <span class="ci">0.68–0.79</span></td><td>0.393 <span class="ci">0.34–0.45</span></td><td>0.416 <span class="ci">0.36–0.48</span></td></tr><tr><th>Infilling, single-line*</th><td>0.688 <span class="ci">0.65–0.73</span></td><td>0.524 <span class="ci">0.48–0.57</span></td><td>0.664 <span class="ci">0.62–0.70</span></td><td>0.720 <span class="ci">0.68–0.76</span></td></tr><tr><th>Infilling, multi-line*</th><td>0.436 <span class="ci">0.39–0.48</span></td><td>0.350 <span class="ci">0.31–0.39</span></td><td>0.224 <span class="ci">0.19–0.26</span></td><td>0.252 <span class="ci">0.22–0.29</span></td></tr></table>
+<div class="caption"><b>Table 2.</b> Ministral 8B, with LLaDA 8B as a natively trained diffusion reference.</div>
+<table class="num"><tr><th>Task</th><th>Original</th><th>AR control</th><th>Conversion (released)</th><th>LLaDA 8B</th></tr><tr><th>GSM8K</th><td>0.886 <span class="ci">0.86–0.91</span><br><span class="sub">256 tok: 0.710</span></td><td>0.850 <span class="ci">0.82–0.88</span><br><span class="sub">256 tok: 0.838</span></td><td>0.646 <span class="ci">0.60–0.69</span></td><td>0.588 <span class="ci">0.54–0.63</span></td></tr><tr><th>MMLU</th><td>0.566 <span class="ci">0.52–0.61</span></td><td>0.646 <span class="ci">0.60–0.69</span></td><td>0.634 <span class="ci">0.59–0.68</span></td><td>0.604 <span class="ci">0.56–0.65</span></td></tr><tr><th>ARC-C</th><td>0.716 <span class="ci">0.67–0.75</span></td><td>0.830 <span class="ci">0.79–0.86</span></td><td>0.840 <span class="ci">0.81–0.87</span></td><td>0.878 <span class="ci">0.85–0.90</span></td></tr><tr><th>HumanEval</th><td>0.817 <span class="ci">0.75–0.87</span><br><span class="sub">256 tok: 0.659</span></td><td>0.732 <span class="ci">0.66–0.79</span><br><span class="sub">256 tok: 0.665</span></td><td>0.280 <span class="ci">0.22–0.35</span></td><td>0.341 <span class="ci">0.27–0.42</span></td></tr><tr><th>MBPP</th><td>0.677 <span class="ci">0.62–0.73</span></td><td>0.708 <span class="ci">0.65–0.76</span></td><td>0.412 <span class="ci">0.35–0.47</span></td><td>0.486 <span class="ci">0.43–0.55</span></td></tr><tr><th>Infilling, single-line*</th><td>0.634 <span class="ci">0.59–0.68</span></td><td>0.696 <span class="ci">0.65–0.73</span></td><td>0.726 <span class="ci">0.69–0.76</span></td><td>0.886 <span class="ci">0.86–0.91</span></td></tr><tr><th>Infilling, multi-line*</th><td>0.388 <span class="ci">0.35–0.43</span></td><td>0.400 <span class="ci">0.36–0.44</span></td><td>0.282 <span class="ci">0.24–0.32</span></td><td>0.510 <span class="ci">0.47–0.55</span></td></tr></table>
+<div class="caption"><b>Table 3.</b> Paired differences, AR control minus conversion, all arms at 256 tokens. Blue
+cells: 95% bootstrap interval excludes zero. Positive means the control is better.</div>
+<table class="num"><tr><th>Task (256 tokens for all)</th><th>Qwen: control − our conversion</th><th>Qwen: control − released conversion</th><th>Ministral: control − released conversion</th></tr><tr><th>GSM8K</th><td class="sig">+0.068 <span class="ci">+0.02 to +0.12</span></td><td class="sig">-0.116 <span class="ci">-0.17 to -0.07</span></td><td class="sig">+0.192 <span class="ci">+0.15 to +0.24</span></td></tr><tr><th>MMLU</th><td class="sig">+0.066 <span class="ci">+0.03 to +0.10</span></td><td class="sig">+0.066 <span class="ci">+0.03 to +0.10</span></td><td>+0.012 <span class="ci">-0.03 to +0.05</span></td></tr><tr><th>ARC-C</th><td class="sig">+0.070 <span class="ci">+0.04 to +0.10</span></td><td class="sig">+0.052 <span class="ci">+0.03 to +0.08</span></td><td>-0.010 <span class="ci">-0.04 to +0.02</span></td></tr><tr><th>HumanEval</th><td class="sig">+0.451 <span class="ci">+0.37 to +0.54</span></td><td class="sig">+0.457 <span class="ci">+0.38 to +0.54</span></td><td class="sig">+0.384 <span class="ci">+0.30 to +0.46</span></td></tr><tr><th>MBPP</th><td class="sig">+0.346 <span class="ci">+0.28 to +0.41</span></td><td class="sig">+0.323 <span class="ci">+0.26 to +0.39</span></td><td class="sig">+0.296 <span class="ci">+0.23 to +0.36</span></td></tr><tr><th>Infilling, single-line*</th><td class="sig">-0.140 <span class="ci">-0.20 to -0.08</span></td><td class="sig">-0.196 <span class="ci">-0.25 to -0.14</span></td><td>-0.030 <span class="ci">-0.08 to +0.02</span></td></tr><tr><th>Infilling, multi-line*</th><td class="sig">+0.126 <span class="ci">+0.08 to +0.17</span></td><td class="sig">+0.098 <span class="ci">+0.05 to +0.15</span></td><td class="sig">+0.118 <span class="ci">+0.07 to +0.17</span></td></tr></table>
+
+<p>Table 3 isolates the diffusion objective. On both backbones the conversion is far worse at code generation:
+45 and 35 points behind the control on HumanEval and MBPP for Qwen, and 38 and 30 points for Ministral. Multi-line
+infilling also favours the control by 10–13 points. Knowledge and multiple-choice tasks are close: on Ministral the
+differences on MMLU and ARC-C are within ±1.2 points and not significant; on Qwen the control leads by 5–7 points.
+Our retrained conversion matches the released adapter within ±0.03 on five of seven tasks; it is worse on GSM8K
+(0.434 against 0.618) and on single-line infilling (0.664 against 0.720), for reasons we did not isolate.</p>
+
+<h3>3.2 Most of BYOD's maths gap is the data, not diffusion</h3>
+<p class="key">Qwen on GSM8K: original <b>0.92</b> → AR control trained on the same data <b>0.50</b> → conversions 0.43–0.62. The data explains most of the drop that looked like a cost of diffusion.</p>
+<figure class="narrow"><img src="fig/gsm8k_chain.png"></figure>
+<div class="caption"><b>Figure 2.</b> GSM8K: original model → AR control trained on BYOD's data → conversions.</div>
+<p>On Qwen, fine-tuning on BYOD's data alone takes GSM8K <b>from 0.922 to 0.502, with no diffusion involved</b>: the control
+learned BYOD's terse style and answers in a <b>median of 7 tokens</b>, skipping the working. The released conversion (0.618)
+is even <i>better</i> than this control. On Ministral the same data costs only 3.6 points (0.886 → 0.850) and diffusion
+costs 20 (→ 0.646). So whether BYOD's maths gap is a cost of diffusion depends on the backbone; comparing a conversion
+only with its original model, as BYOD does, would have attributed the whole Qwen gap to diffusion.</p>
+
+<h3>3.3 The step dial is real, but it never catches AR</h3>
+<p class="key">Eight times fewer steps makes the conversion eight times faster (5.57 s → 0.70 s per question) and <b>seven times less accurate</b> (0.618 → 0.088 on GSM8K).</p>
+<figure><img src="fig/steps.png"></figure>
+<div class="caption"><b>Figure 3.</b> GSM8K accuracy against seconds per question for the two Qwen conversions at 32,
+64, 128 and 256 steps (256 positions), and the AR arms (diamonds; 256-token budget). Same GPU and software stack; the AR
+arms use a KV cache.</div>
+<div class="caption"><b>Table 4.</b> Steps against accuracy and time, Qwen.</div>
+<table class="num"><tr><th>Qwen arm</th><th>GSM8K acc.<br>batch 16</th><th>s / question<br>batch 16</th><th>HumanEval<br>batch 16</th><th>GSM8K<br>batch 1</th><th>s / question<br>batch 1</th></tr><tr><th>Released, 32 steps</th><td>0.088</td><td>0.70</td><td>—</td><td>3/32</td><td>1.08</td></tr><tr><th>Released, 64 steps</th><td>0.178</td><td>1.40</td><td>0.000</td><td>6/32</td><td>2.15</td></tr><tr><th>Released, 128 steps</th><td>0.368</td><td>2.79</td><td>0.091</td><td>11/32</td><td>4.30</td></tr><tr><th>Released, 256 steps</th><td>0.618</td><td>5.57</td><td>0.268</td><td>17/32</td><td>8.59</td></tr><tr><th>Ours, 32 steps</th><td>0.066</td><td>0.70</td><td>—</td><td>1/32</td><td>1.08</td></tr><tr><th>Ours, 64 steps</th><td>0.130</td><td>1.40</td><td>0.000</td><td>5/32</td><td>2.15</td></tr><tr><th>Ours, 128 steps</th><td>0.288</td><td>2.79</td><td>0.104</td><td>9/32</td><td>4.30</td></tr><tr><th>Ours, 256 steps</th><td>0.434</td><td>5.59</td><td>0.274</td><td>14/32</td><td>8.60</td></tr><tr class='ar'><th>Original AR</th><td>0.648</td><td>0.33</td><td>0.695</td><td>17/32</td><td>3.07</td></tr><tr class='ar'><th>AR control</th><td>0.502</td><td>0.27</td><td>0.726</td><td>16/32</td><td>0.89</td></tr></table>
+<p>At one token per step the conversion takes 5.6 s per GSM8K question at batch 16, against 0.33 s for the original
+model, which writes much longer answers (median 223 tokens): <b>about 17× slower</b>. Committing several tokens per step
+makes generation proportionally faster, but accuracy falls just as fast: the released conversion drops from 0.618 at
+256 steps to 0.368 at 128, 0.178 at 64 and 0.088 at 32, and HumanEval drops to 0 at 64 steps. At batch 1 the original
+model answers in 3.07 s with 17/32 correct; the conversion needs 8.6 s for the same 17/32, and at 128 steps it is still
+slower (4.3 s) and worse (11/32). <b>No step count puts the conversion on or above the AR speed–accuracy curve.</b> The
+batch-1 test uses only 32 questions and should be read as a pilot.</p>
+<p><b>A compute dial AR models do not have.</b> <b>The step count is a genuine control that autoregressive decoding lacks.</b>
+It fixes the work spent on an answer before generation starts, independently of how long the answer is, and time
+scales linearly with it (5.57 s per question at 256 steps, 0.70 s at 32, Table 4). A non-thinking AR model has no such
+switch: it spends one forward pass per token, so its cost is set by the length of what it writes. Reasoning modes move
+compute only softly, through how long the model chooses to think. The dial works mechanically as advertised. For these
+converted models, though, every setting lies below the AR curve in Figure 3: turning it down buys speed at a steep cost in
+accuracy, and turning it up never catches the AR model. Whether native diffusion pretraining gives a better dial is
+open; LLaDA was measured here only at 256 steps.</p>
+
+<h3>3.4 Infilling wins only when told the exact gap length</h3>
+<p class="key">Told the true gap length, the Qwen conversions score 0.68–0.73 against 0.52 for the AR control. Given 1.5× the length, they fall to <b>about 0.25</b>.</p>
+<div class="exhibit">
+<p class="ex-h">HumanEval single-line infilling, problem 55, at three gap lengths</p>
+<pre class="snip">def fib(n: int):
+    """Return n-th Fibonacci number."""
+<span style="background:#dbe8fa">    ░░░░░░░░░░░░   ← the missing line; correct answer:  if n == 0:</span>
+        return 0
+    if n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)</pre>
+<table class="ex-t qa">
+<tr><td class="st" style="width:150pt">BYOD-Qwen, true length (7)</td><td><code>if n == 0:</code> <span class="ok">passes</span></td></tr>
+<tr><td class="st">BYOD-Qwen, 1.5× length (10)</td><td><code class="badc">if n == 0: ⏎ return:</code> <span class="bad2">fails</span> <span class="mut">(spare positions filled with unrelated tokens)</span></td></tr>
+<tr><td class="st">LLaDA 8B, 1.5× length (12)</td><td><code># Base cases ⏎ if n &lt;= 0:</code> <span class="ok">passes</span> <span class="mut">(spare positions used for a comment)</span></td></tr>
+</table>
+<p class="ex-f">Recorded outputs from our evaluation. Numbers in brackets are the masked positions the model was given.</p>
+</div>
+<p>Single-line infilling is the one task where conversion beats the same-data control on Qwen: our conversion by 14
+points and the released one by 20 (Table 3). It does not on Ministral (−3 points, not significant). But every
+diffusion infilling result above was obtained by telling the model the exact length of the gap, in tokens, and
+filling exactly that many mask positions. The AR arms receive no such information. To measure how much the result
+depends on it, we reran single-line infilling for the three diffusion arms with 0.5×, 1.5× and 2× the true length.</p>
+<figure><img src="fig/gap.png"></figure>
+<div class="caption"><b>Figure 4.</b> Single-line infilling accuracy against the gap length given to the diffusion
+model (answers cut at the first code fence, see text). Dashed lines: Qwen AR arms, which need no length.</div>
+<div class="caption"><b>Table 5.</b> Gap-length sweep, 500 examples. Main value: answer cut at the first code fence (the
+rule applied to AR answers); raw score below.</div>
+<table class="num"><tr><th>Diffusion arm</th><th>0.5× length</th><th>true length</th><th>1.5× length</th><th>2× length</th></tr><tr><th>Qwen conversion (ours)</th><td>0.026 <span class='ci'>raw 0.026</span></td><td>0.676 <span class='ci'>raw 0.664</span></td><td>0.244 <span class='ci'>raw 0.132</span></td><td>0.280 <span class='ci'>raw 0.146</span></td></tr><tr><th>Qwen conversion (released)</th><td>0.030 <span class='ci'>raw 0.030</span></td><td>0.732 <span class='ci'>raw 0.720</span></td><td>0.246 <span class='ci'>raw 0.138</span></td><td>0.304 <span class='ci'>raw 0.180</span></td></tr><tr><th>LLaDA 8B</th><td>0.046 <span class='ci'>raw 0.044</span></td><td>0.890 <span class='ci'>raw 0.886</span></td><td>0.504 <span class='ci'>raw 0.436</span></td><td>0.590 <span class='ci'>raw 0.566</span></td></tr></table>
+<p>With too few positions every arm fails, as it must. With spare positions the conversions typically write the correct
+line and then fill the leftover positions with junk, most often a closing code fence, instead of padding. Cutting each
+answer at its first code fence, as the AR scorer already does, recovers part of the loss, but the conversions still fall
+from 0.68–0.73 to about 0.25 at 1.5× and 0.28–0.30 at 2×, far below the Qwen AR control (0.524), which needs no length
+at all. LLaDA is much more robust (0.50 at 1.5×, 0.59 at 2×), so a natively trained diffusion model handles spare
+positions far better than a converted one. The infilling advantage of conversion is therefore real only when the gap
+length is known in advance, for example in a fixed-size slot.</p>
+
+<h3>3.5 No escape from the reversal curse</h3>
+<p class="key">With the name in the prompt, both models answer <b>0 of 1,000</b> reverse questions after learning 999–1,000 forward. With name-free training, the conversion learned 9 of 1,000 facts forward; the AR control learned 300.</p>
+<p>We generated 1,000 invented people with invented roles ("Ostura Jaskisto is the lead composer of the sunken
+compass") and taught them in one direction only: four phrasings of "name → role", shuffled, to the Qwen AR control and
+our Qwen conversion, each with its own training objective, identical data order, learning rate 5×10<sup>−5</sup> and
+batch 16. We then asked "Who is Ostura Jaskisto?" (forward) and "Who is the lead composer of the sunken compass?"
+(reverse), scoring by required words. Neither model knew any fact before training.</p>
+<div class="exhibit">
+<p class="ex-h">One item of the reversal test</p>
+<table class="ex-t qa">
+<tr><td class="st">taught</td><td>“Ostura Jaskisto is the lead composer of the sunken compass.” <span class="mut">(1,000 invented facts like this, name first)</span></td></tr>
+<tr><td class="st">forward</td><td>“Who is Ostura Jaskisto?” → both models answer correctly <span class="mut">(999–1000 of 1,000 after 10,000 updates)</span></td></tr>
+<tr><td class="st">reverse</td><td>“Who is the inventor of the violet canal?” <span class="mut">(the role of another of the 1,000 people)</span><br>
+<span style="color:#b3541e"><b>AR control:</b></span> answers with an invented name, such as “Jean-Pierre Leclair”.<br>
+<span style="color:#1c5cab"><b>Diffusion conversion:</b></span> “The inventor of the violet canal is the inventor of the violet canal.” <span class="mut">(0 of 1,000 for both)</span></td></tr>
+</table>
+</div>
+<div class="caption"><b>Table 6.</b> Reversal test, 1,000 questions per direction (95% interval for 0/1000: 0–0.4%).
+The name-free run used an A100; all others a G4.</div>
+<table class="num"><tr><th rowspan="2">Qwen, training</th><th colspan="2">AR control</th><th colspan="2">Conversion (ours)</th></tr><tr><th>forward</th><th>reverse</th><th>forward</th><th>reverse</th></tr><tr><th>Before training</th><td>0/1000</td><td>0/1000</td><td>0/1000</td><td>0/1000</td></tr><tr><th>2,000 updates, name in prompt</th><td>1000/1000</td><td>0/1000</td><td>66/1000</td><td>0/1000</td></tr><tr><th>10,000 updates, name in prompt</th><td>1000/1000</td><td>0/1000</td><td>999/1000</td><td>0/1000</td></tr><tr><th>10,000 updates, name-free prompts</th><td>300/1000</td><td>0/1000</td><td>9/1000</td><td>2/1000</td></tr></table>
+<p>After 2,000 updates the conversion had learned only 6.6% of the facts forward, so its reverse score said nothing.
+After 10,000 updates it knows 999 of 1,000 forward and still answers none in reverse, exactly like the AR control. No
+reverse answer from either model contains any of the 1,000 trained names, right or wrong: the AR control invents
+plausible names ("Jean-Pierre Leclair"), and the conversion repeats the question back in all 1,000 cases ("The inventor
+of the violet canal is the inventor of the violet canal"). This agrees with DiffER <a class="cite" href="#ref-he">[7]</a>, which finds
+the reversal curse in natively trained diffusion LLMs.</p>
+<p><b>A flaw in that design, and a corrected run.</b> All four training phrasings above name the person in the question
+("Who is Ostura Jaskisto?" → "Ostura Jaskisto is the …"), and BYOD's loss covers only answer tokens. When a name token is
+masked in the answer, the model can copy it from the question, so it is never forced to recover the name from the
+description, which is how masked training is supposed to help. We therefore reran both arms with name-free prompts
+("State a fact." → "Ostura Jaskisto is the lead composer of the sunken compass."), with the same facts, order, updates and
+learning rate, and the same test questions. The AR control now answers 30% forward, probably because it must carry a statement over
+to a question it never saw, and none in reverse. Its reverse answers are classic reversal-curse errors: 843 of 1,000
+repeat the asked description but attach a trained name of the wrong person, and 559 of its forward answers are trained
+facts word for word. The conversion learned the format but not the facts. Only 3 of its 1,000 forward answers and 1
+reverse answer are trained facts, and only 20–29% even use a trained name ("Pellura Paskane", which is not one of them,
+appears 245 times). Its 9 forward hits are above chance (with its answers shuffled across questions, 200 shuffles give 1.0 on
+average and at most 4), so it keeps a trace of a few facts; its 2 reverse hits are at chance (0.3 on average, at most 2),
+and neither is a fact it answers forward. So under identical data and budget, <b><i>the masked-diffusion conversion failed to memorise facts that the AR
+control memorised</i></b>. The reverse question is still open for conversions: a model that cannot recall a fact either way
+says nothing about direction. Pan et al. <a class="cite" href="#ref-pan">[12]</a> study masked ("demasking") fine-tuning for knowledge injection in AR and
+diffusion models; a higher learning rate or many more updates may be needed for the masked objective, which we did not
+test. We did not teach LLaDA the facts.</p>
+
+<h3>3.6 Converted models still write almost left to right</h3>
+<p class="key">Kendall τ of <b>0.88–0.95</b> on GSM8K and HumanEval: although free to fill positions in any order, the converted models write nearly left to right.</p>
+<div class="caption"><b>Table 7.</b> How close the decoding order is to left-to-right, and repeated adjacent words.</div>
+<table class="num"><tr><th rowspan="2">Arm</th><th colspan="5">Median Kendall τ, commit order vs position</th><th rowspan="2">Doubled words<br>per 100, GSM8K</th></tr><tr><th>GSM8K</th><th>HumanEval</th><th>MMLU</th><th>Infill single</th><th>Infill multi</th></tr><tr><th>Qwen conversion (ours)</th><td>0.88</td><td>0.94</td><td>0.71</td><td>0.79</td><td>0.83</td><td>4.73</td></tr><tr><th>Qwen conversion (released)</th><td>0.93</td><td>0.95</td><td>0.72</td><td>0.78</td><td>0.82</td><td>1.90</td></tr><tr><th>Ministral conversion (released)</th><td>0.93</td><td>0.93</td><td>0.71</td><td>0.67</td><td>0.75</td><td>1.32</td></tr><tr><th>LLaDA 8B</th><td>0.30</td><td>0.89</td><td>0.67</td><td>0.64</td><td>0.47</td><td>0.70</td></tr><tr class='ar'><th>Qwen original (AR)</th><td colspan='5' class='na'>left to right by construction (τ = 1)</td><td>0.69</td></tr><tr class='ar'><th>Qwen AR control</th><td colspan='5' class='na'>left to right by construction (τ = 1)</td><td>0.41</td></tr></table>
+<p>Although a diffusion model may commit positions in any order, the conversions decode almost left to right on
+GSM8K and HumanEval (Kendall τ 0.88–0.95) and less so on infilling (0.67–0.83), where the context on the right helps.
+LLaDA is far less sequential on GSM8K (0.30). Parallel decoding leaves visible damage: our retrained conversion repeats
+an adjacent word 4.7 times per 100 words on GSM8K ("fiber fiber"), against 0.7 for the original model.</p>
+
+<h2>4. What we predicted, and what happened</h2>
+<p>We wrote five hypotheses down before running any evaluation. <b>Two held (H3, H5), two held only in part (H1, H4), and one was not supported (H2).</b> The predictions we got wrong are the most informative: we expected the maths gap to come from diffusion, and it came mostly from the data.</p>
+<table class="num verdict"><tr><th>Pre-registered hypothesis</th><th>Verdict</th><th>Evidence</th></tr>
+<tr><th>H1: conversions beat AR controls on infilling at the true gap length</th><td style="color:#9a5b00;font-weight:700">Partly</td><td>Qwen single-line yes (+0.14, +0.20); Ministral no; multi-line reversed; collapses without the exact length (§3.4)</td></tr>
+<tr><th>H2: conversions beat AR controls on reversed facts</th><td style="color:#b3261e;font-weight:700">Not supported; untested in the fair format</td><td>Name in prompt: 0/1000 for both after 999–1000/1000 forward. Name-free: the conversion did not learn the facts (9/1000 forward), the AR control did (§3.5)</td></tr>
+<tr><th>H3: at matched accuracy, conversions are not faster than AR</th><td style="color:#1a7f37;font-weight:700">Supported</td><td>No step count reaches the AR speed–accuracy curve (§3.3)</td></tr>
+<tr><th>H4: the GSM8K gap comes from conversion; controls stay within 5 points of the original</th><td style="color:#9a5b00;font-weight:700">Rejected on Qwen, supported on Ministral</td><td>Qwen control −42 points; Ministral −3.6 (§3.2)</td></tr>
+<tr><th>H5: commit order is mostly left-to-right on maths, less so on infilling</th><td style="color:#1a7f37;font-weight:700">Supported</td><td>τ 0.88–0.93 on GSM8K vs 0.67–0.83 on infilling (§3.6)</td></tr>
+</table>
+
+<h2>5. Limitations</h2>
+<ul>
+<li><b>Two backbones, one retrain.</b> The controlled comparison uses our retrain for Qwen and the released adapter for
+Ministral. The released adapter may differ slightly from <code>paper.yaml</code> (our retrain is 18 points worse on
+GSM8K, cause not isolated).</li>
+<li><b>The control is not identical in loss weighting.</b> It uses a plain next-token loss without BYOD's 0.9/0.1
+answer/padding weighting; that weighting has no direct AR equivalent.</li>
+<li><b>Budgets.</b> Diffusion arms use 256 positions, as in BYOD's training; LLaDA fills this budget on GSM8K and
+HumanEval (median 255), so its scores there may be budget-limited. AR arms are compared at 512 tokens where they were cut.</li>
+<li><b>Speed.</b> One GPU type, our batched sampler, and no vLLM-style AR server; a stronger AR serving stack would
+widen the gap. Batch-1 timing uses 32 questions.</li>
+<li><b>Reversal.</b> One backbone, one fact template, a LoRA on a frozen AR model; LLaDA was not taught the facts. The first
+runs put the name in the prompt; in the name-free rerun the conversion did not memorise the facts in 10,000 updates at
+our learning rate, so no run tests reverse recall for a conversion that knows the facts (§3.5). The rerun used an A100
+on a teammate's account, not the G4 used elsewhere.</li>
+<li><b>Prompting.</b> One shared prompt for all arms, which differs from BYOD's per-family prompts; absolute numbers
+therefore differ from BYOD's Table 3.</li>
+</ul>
+
+<h2>6. Conclusion</h2>
+<p>BYOD shows that an AR chat model can be turned into a working diffusion model for a few GPU-hours. A same-data AR
+control changes how its results read. Diffusion conversion costs 30–46 points in code generation on two backbones; part
+of the maths gap that looks like a cost of diffusion is a cost of the training data; the step count trades accuracy for
+speed, a real compute dial that AR decoding lacks, but at every setting it is behind AR decoding; the infilling advantage depends on knowing the gap length; and the conversion shows no reversal advantage:
+with the name in the prompt it keeps the curse in full, and without it, it fails to learn the facts that the AR control
+learns from the same data. A natively trained diffusion model (LLaDA) is clearly better at infilling and more robust to
+a wrong gap length, which suggests that conversion inherits diffusion's costs faster than its benefits. A fair test of
+any future conversion method should include a same-data AR control, wall-clock time, and infilling without a length
+oracle.</p>
+
+<h3>Practical implications</h3>
+<p>For practitioners considering a conversion, the results suggest the following.</p>
+<ul>
+<li><b>Conversion suits tasks with a known output length</b>, such as a fixed-size edit or one missing line of code. That is the one setting where it beat the same-data AR control.</li>
+<li><b>It suits a fixed compute budget per answer.</b> The step count sets the cost before generation starts, which AR decoding cannot do, though accuracy falls quickly as steps are reduced.</li>
+<li><b>It is less suitable where code or multi-step maths matter</b> (30–46 points lower on code than a same-data AR model) or where latency matters (17× slower at full quality).</li>
+<li><b>It is not yet a way to add knowledge by fine-tuning.</b> In our budget the conversion memorised almost none of the new facts that the AR control learned.</li>
+<li><b>As a research tool it delivers.</b> BYOD's recipe produced a working diffusion model in one GPU afternoon, which is what made this study possible.</li>
+</ul>
+
+<h2>Reproducibility and compute</h2>
+<p>Code is public at <a href="https://github.com/akode2803/cs787-diffusion-conversion">github.com/akode2803/cs787-diffusion-conversion</a> (folder <code>diffgap/</code> locally): <code>train/</code> (AR control, retrain, Colab job launcher with a VM self-stop
+guard), <code>eval/</code> (harness, scorers, analysis), and <code>docs/report/</code> (this report and its figures,
+built from <code>docs/results/summary.json</code>). The trained adapters (Qwen
+conversion retrain, Qwen and Ministral AR controls, and the reversal-run adapters) are public on
+<a href="https://drive.google.com/drive/folders/1yVh_LSR7i7sPPRZjECHNl1wOB88NTijv">Google Drive</a>, with loading instructions, so readers can try the models themselves. For a quick look without a GPU, <code>notebooks/tour_of_results.ipynb</code> in the repository replays the main results and shows a diffusion model writing an answer step by step.
+Per-example evaluation outputs, the slides and the presentation video are in the shared <a href="https://drive.google.com/drive/folders/1rKAYdVt2WyketIIOP5Pch_0L2slWWNuA">project Drive folder</a>. The full run used about 325 Colab compute units (G4 at 10.05 CU/h) across two accounts: three 25,000-update
+training runs, eight evaluation arms, the step and gap sweeps, and two reversal runs, plus a name-free reversal rerun on an A100 (about 10 CU). Every number in this report is
+labelled in <code>docs/FINDINGS.md</code> and its provenance logged in <code>docs/EXPERIMENT_LOG.md</code>.</p>
+
+<h2 id="references">References</h2>
+<div class="refs">
+<p id="ref-austin"><span class="rn">[1]</span> Austin, J. et al. (2021). Program Synthesis with Large Language Models. <a href="https://arxiv.org/abs/2108.07732">arXiv:2108.07732</a>.</p>
+<p id="ref-bavarian"><span class="rn">[2]</span> Bavarian, M. et al. (2022). Efficient Training of Language Models to Fill in the Middle. <a href="https://arxiv.org/abs/2207.14255">arXiv:2207.14255</a>.</p>
+<p id="ref-berglund"><span class="rn">[3]</span> Berglund, L. et al. (2023). The Reversal Curse: LLMs trained on "A is B" fail to learn "B is A". <a href="https://arxiv.org/abs/2309.12288">arXiv:2309.12288</a>.</p>
+<p id="ref-chen"><span class="rn">[4]</span> Chen, M. et al. (2021). Evaluating Large Language Models Trained on Code. <a href="https://arxiv.org/abs/2107.03374">arXiv:2107.03374</a>.</p>
+<p id="ref-clark"><span class="rn">[5]</span> Clark, P. et al. (2018). Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge. <a href="https://arxiv.org/abs/1803.05457">arXiv:1803.05457</a>.</p>
+<p id="ref-cobbe"><span class="rn">[6]</span> Cobbe, K. et al. (2021). Training Verifiers to Solve Math Word Problems. <a href="https://arxiv.org/abs/2110.14168">arXiv:2110.14168</a>.</p>
+<p id="ref-he"><span class="rn">[7]</span> He, S., Wei, K., Zeng, X. et al. (2026). DiffER: Diffusion Entity-Relation Modeling for Reversal Curse in Diffusion Large Language Models. <a href="https://arxiv.org/abs/2601.07347">arXiv:2601.07347</a>.</p>
+<p id="ref-hendrycks"><span class="rn">[8]</span> Hendrycks, D. et al. (2021). Measuring Massive Multitask Language Understanding. <a href="https://arxiv.org/abs/2009.03300">arXiv:2009.03300</a>.</p>
+<p id="ref-hu"><span class="rn">[9]</span> Hu, E. J. et al. (2021). LoRA: Low-Rank Adaptation of Large Language Models. <a href="https://arxiv.org/abs/2106.09685">arXiv:2106.09685</a>.</p>
+<p id="ref-kuiper"><span class="rn">[10]</span> Kuiper, R. J. A. and Bagheri, R. A. (2026). BYOD: Build Your Own DLM – Efficient Autoregressive-to-Diffusion Language Model Conversion. <a href="https://arxiv.org/abs/2610.41574">arXiv:2610.41574</a>.</p>
+<p id="ref-nie"><span class="rn">[11]</span> Nie, S. et al. (2025). Large Language Diffusion Models. <a href="https://arxiv.org/abs/2502.09992">arXiv:2502.09992</a>.</p>
+<p id="ref-pan"><span class="rn">[12]</span> Pan, X., Hahami, E., Fan, J. et al. (2025). Demasking Fine-Tuning for Knowledge Injection in Autoregressive and Diffusion LLMs. <a href="https://arxiv.org/abs/2510.09885">arXiv:2510.09885</a>.</p>
+<p id="ref-qwen"><span class="rn">[13]</span> Qwen Team (2024). Qwen2.5 Technical Report. <a href="https://arxiv.org/abs/2412.15115">arXiv:2412.15115</a>.</p>
+</div>
+</body></html>

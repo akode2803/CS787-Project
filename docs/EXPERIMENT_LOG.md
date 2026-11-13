@@ -218,3 +218,157 @@ Race found while writing the job: every evaluation VM restores all of `eval/main
 Queued at 16:03 IST in one lane: Qwen 512 check (`ar5`), then Ministral (`evm1`). Each waits for a free G4; waiting costs nothing.
 
 Correction: the two times above were first written as 16:40 and 16:45 by guess; the Mac clock showed 16:03-16:05. FINDINGS' 16:30 timestamp was also a guess (about 15:55).
+
+
+## 2026-11-08 — Qwen main evaluation complete (4 arms)  [R]
+`evq1` and `evq2` finished at 17:47-17:48 IST. Each VM stopped itself ("GUARD STOP job ended"), with no idle time. Total about 2.8 h each, about 56 CU for both. Balance 143.06 at 18:52.
+The Claude session restarted at about 18:50 and killed the Mac-side supervisors and the queued lane. The queued jobs had not started (no free G4), so nothing was lost. Lanes now run detached with nohup (`diffgap/train/lanes/run_lane.sh`, logs in `lanes/*.log`), so they outlive a session. Restarted at 18:54: lane A = Qwen 512-token check (`ar5`), then Ministral (`evm1`); lane B = LLaDA (`evl1`), then speed/gap sweep (`evs1`). Both launched at 18:56.
+Results, rescored (`rescore_infill.py`), full table in `docs/results/qwen_main.md`. Accuracy, 500 examples unless noted:
+| Task | Parent | AR control | Retrained conversion | Released BYOD-Qwen |
+|---|---|---|---|---|
+| GSM8K | 0.648 | 0.502 | 0.434 | 0.618 |
+| MMLU | 0.720 | 0.738 | 0.672 | 0.672 |
+| ARC-C | 0.914 | 0.914 | 0.844 | 0.862 |
+| HumanEval (164) | 0.695 | 0.726 | 0.274 | 0.268 |
+| MBPP (257) | 0.739 | 0.739 | 0.393 | 0.416 |
+| Infill single, strict | 0.688 | 0.524 | 0.664 | 0.720 |
+| Infill multi, strict | 0.436 | 0.350 | 0.224 | 0.252 |
+Paired, AR control minus retrained conversion (same data, same order; the difference is the objective):
+- GSM8K +0.068 (+0.018 to +0.118); MMLU +0.066; ARC-C +0.070.
+- HumanEval +0.451 (+0.366 to +0.537); MBPP +0.346 (+0.280 to +0.412).
+- Infill multi strict +0.126 (+0.078 to +0.174).
+- Infill single strict **-0.140** (-0.196 to -0.084): the conversion is better here.
+Released minus retrained: GSM8K +0.184 (+0.136 to +0.230), single-line infill +0.056 (+0.026 to +0.086). Every other task is within ±0.03 (CIs include 0).
+Decoding: diffusion is about 17x slower per GSM8K example than AR at batch 16 (5.6 s against 0.27-0.33 s). Median Kendall tau of commit order against position is 0.71-0.95, so decoding is mostly left to right. Doubled words per 100 on GSM8K: retrained 4.73, released 1.90, parent 0.69, AR control 0.41.
+
+
+## 2026-11-08 — 512-token AR check; speed job extended  [R]
+`ar5`, 18:56-19:07 IST; the VM stopped itself ("job ended"). Results:
+| Arm | GSM8K at 256 | GSM8K at 512 | HumanEval at 256 | HumanEval at 512 |
+|---|---|---|---|---|
+| Qwen parent | 0.648 | **0.922** (6/500 still cut) | 0.695 | 0.811 (2 cut) |
+| Qwen AR control | 0.502 | 0.502 (0 cut) | 0.726 | 0.787 (0 cut) |
+The diffusion arms almost never fill their 256 positions: released 7/500 GSM8K and 12/164 HumanEval answers use 250 or more positions, retrained 4/500 and 7/164, and none of those is correct. So the 256 budget binds only the AR parent (and the control on HumanEval). For GSM8K and HumanEval, the fair parent number is the 512 one.
+So on GSM8K: parent 0.922 -> same-data AR control 0.502 -> conversions 0.434 (retrained) / 0.618 (released). Most of the drop from the parent comes from BYOD's data, which teaches short answers (the control's median is 7 tokens), not from diffusion. H4 ("AR controls stay within 5 points of parents on GSM8K") is rejected: the control is 42 points below.
+Speed job (`job_eval_speed_gap.json`, lane B after LLaDA) extended after the user's request to test diffusion's step control (19:05):
+- GSM8K at 32/64/128 steps for both conversions (released added, since it is the stronger GSM8K model);
+- batch-1 latency at 32-256 steps for both conversions and both AR arms;
+- HumanEval at 64/128 steps for both conversions;
+- the gap-length sweep (x0.5, x1.5, x2), now on the first 200 examples of each infilling set.
+Recosted: the original 1.4 h estimate was too low, since x1.5 and x2 multi-line infilling alone would take over 2 h on 500 examples. Now about 3.4 h, about 34 CU, max_hours 4.5.
+
+
+## 2026-11-08 — Reversal rerun queued (10,000 updates)  [R]
+User approved at about 19:13 IST. Run 2 changes only the training length: 10,000 updates for both arms (40 shuffled passes over the same 4,000 fact phrasings, 160,000 rows), learning rate 5e-5 as before, each arm from its own adapter with its own objective. The AR control is retrained too, so both arms have the same budget, even though it was already at 1000/1000 forward and 0/1000 reverse after 2,000 updates.
+`reversal_job.sh` now takes UPDATES, EPOCHS, LR and TAG from the environment. Arms are named `+facts10k`; adapters, metrics and data (without the 160,000-row training file) go to `eval/reversal/` with capped uploads. Job `job_eval_reversal10k.json`, max_hours 1.75, estimate about 55 min / 9 CU. Queued as lane C (`evr2`) at 19:15. It takes the first G4 that frees up, after Ministral (lane A) or LLaDA (lane B).
+What would count: if the conversion learns the facts forward (say 80% or more), its reverse score tests H2. If it still does not learn them, the result is that the masked objective memorises new facts much more slowly, and H2 stays untested.
+
+## 2026-11-08 — Status at 22:25 IST; partial Ministral and LLaDA results  [R]
+- Lane A, Ministral (`evm1`, from 19:09): parent, AR control and six of seven released-conversion tasks are done. Released multi-line infilling was at 224/500 at 22:28. The 512-token checks for parent and control follow.
+- Lane B, LLaDA (`evl1`, from 18:56, max 4 h, so the guard stops it by 22:56 at the latest): on the last task, multi-line infilling, at 464/500. The final examples are the longest (up to 30 s each). The Drive result file was still updating at 22:25, so it isn't hung. The speed job (`evs1`) follows.
+- Lane C, reversal 10k (`evr2`): still waiting. "No G4 available" every 5 min since 19:15, because both G4s are busy.
+- Probing a running VM with `colab exec` blocks: launch.py keeps the kernel busy, so the probe just queues. Stopped it. Progress is read from the Drive job log instead.
+- Balance **68.12 CU** at 22:28, rate 20.10/h (two G4s; the user's L4 is not running). The earlier "about 45 CU left at the end" estimate was too high: LLaDA and Ministral ran about 4 h and 3.5 h, not the 2-3 h assumed. Projection: LLaDA ≈5 + Ministral ≈7 + speed ≈34 + reversal ≈9 = ≈55 CU, leaving about 13 CU, less if the user's L4 runs.
+- Partial results fetched, infilling rescored (`rescore_infill.py`), analysed: `docs/results/ministral_llada_partial_2230.md`. Headlines are in FINDINGS. (The rclone `--include` + `--exclude` mix didn't exclude he_multi, so the partial multi-line files are in, with their n shown.)
+
+## 2026-11-08 — LLaDA done; gap-length sweep dropped; account check  [R]
+- LLaDA (`evl1`) finished all 7 tasks. ALLDONE, then `GUARD 17:05:30 UTC STOP job ended` (22:35 IST). Lane B: "FINISHED, VM stopped itself". Final multi-line infilling 255/500 = 0.510.
+- The speed job (`evs1`) started at 22:36. That was before the user answered, at about 22:45, "Yes, drop the sweep" (the x0.5/x1.5/x2 gap-length runs, about 12 CU, my addition rather than the user's step-count request). Because the job was already running, I couldn't edit its command. Instead, `run_eval.py` now returns at once for `--gap` other than `true` when `/content/skip_gap` exists. The patched `run_eval.py` and an empty `skip_gap` were uploaded to `evs1` with `colab upload`, which works while the kernel is busy. The VM's copy was downloaded back and is byte-identical. The job file `job_eval_speed_gap.json` also has the 3 sweep runs removed (20 runs left). Local tests: ALL PASSED. Expected log lines: `SKIPPED qwen-byod-retrained gap x0.5/x1.5/x2`, then ALLDONE.
+- At 22:48 the account had 2 active assignments (`colab usage`, account-wide): `evm1` (Ministral) and `evs1` (speed), both ours; the user's L4 was not running. Balance 61.67 CU, 20.10/h.
+- Lane C (reversal 10k) waits for a G4. Its log shows an earlier "VM LOST at step unknown, restart 1" at 19:19, which means it never got a VM.
+
+## 2026-11-08 — Gap-length sweep re-queued, single-line only  [R]
+At 22:50 the user said their L4 job is done, so the remaining CU are ours ("use them wisely"), and approved the gap-length sweep if nothing more useful is waiting.
+Why it is worth running: every diffusion arm is given the **true** gap length (the number of masked positions), while the AR arms must decide the length themselves. That is oracle information. Diffusion's one clear win, single-line infilling (Qwen conversion +0.140 over its control; LLaDA 0.886 best overall), may depend on it. The sweep (gap x0.5, x1.5, x2) measures how much of the win survives a wrong length.
+Scoped to where the claim is: **single-line infilling only, all 500 examples** (so it pairs with the main runs), for the three diffusion arms with a win to test: Qwen retrained conversion, released BYOD-Qwen, LLaDA (last, so it is the one cut if the time limit hits). Multi-line is dropped: diffusion already loses there with the true length, so a wrong length can only add to a loss we already report.
+Job `job_eval_gap_single.json` (9 runs, max_hours 2.25), lane D (`evg1`), queued at 22:52. Estimate from main-run speeds (0.72 s/example conversions, 1.2 s LLaDA, times the average 1.33 length factor) plus model loads: about 1.5-1.7 h, about 16 CU.
+Budget at 22:48: 61.7 CU. Projection: Ministral ≈4 + speed (no sweep) ≈20 + reversal ≈9 + single-line sweep ≈16 = ≈49, leaving ≈12 CU. Lanes C (reversal) and D (sweep) both wait for a free G4; at most two run at once.
+
+## 2026-11-09 — Ministral, speed/steps and single-line gap sweep finished  [R]
+- Ministral (`evm1`): ALLDONE, `GUARD 17:43:03 UTC STOP job ended` (23:13 IST). Speed (`evs1`): three "SKIPPED ... skip_gap is set" lines, then ALLDONE, guard stop 19:27:55 UTC (00:57 IST). Gap sweep (`evg1`, from 23:17): ALLDONE, guard stop 19:31:33 UTC (01:01 IST). All three VMs stopped themselves.
+- Everything was fetched to the scratchpad and AR infilling rescored with `rescore_infill.py`. `analyze.py` output is in `docs/results/all_main.md`. Step, batch-1 and gap tables: `diffgap/eval/speed_gap.py` → `docs/results/speed_steps_gap.md`.
+- Ministral at 512 tokens: parent GSM8K 0.886 (141/500 answers were cut at 256; 4 at 512), HumanEval 0.817. Control 0.850 and 0.732. Median lengths are the same at both budgets (greedy decoding, same prefix); only the cut tail changes.
+- Gap sweep finding, checked by hand on 4 answers: with spare positions the conversions write the right line, then "```python" or similar junk instead of padding. `diffgap/eval/fence_rescore.py` cuts each diffusion middle at its first ``` (the rule AR answers already get) and reruns the tests: retrained x1.5 0.132→0.244, x2 0.146→0.280; released 0.138→0.246, 0.180→0.304; LLaDA 0.436→0.504, 0.566→0.590; true-length scores change by ≤0.012. Raw files untouched.
+- Reversal 10k (`evr2`, from 00:59): AR control at update 4,600/10,000 at 01:22, 7.6 updates/s, train loss 0.0000. Expected end around 01:55, limit 02:44.
+- Balance 16.18 CU at 01:14, 10.05/h (one G4, only `evr2`). After reversal, about 7 CU left.
+
+## 2026-11-09 — Reversal run 2 (10,000 updates) finished  [R]
+`evr2`, 00:59-02:08 IST. ALLDONE, then `GUARD 20:38:23 UTC STOP job ended`. Lane C: FINISHED. AR control trained at 7.6 updates/s, validation 0.0000 from about update 4,500. Results: AR control forward 1000/1000, reverse 0/1000; conversion forward 999/1000, reverse 0/1000. Partial-credit check (scratchpad script): no reverse answer from either arm contains any trained name or name word. All 1000 conversion answers have the form "<role> is the <role>". The two capped training-metrics uploads failed ("UPLOAD FAILED: /content/rev_ar10k", ".../rev_byod10k"); adapters (1.29 GB each) and data10k reached Drive. Results in `eval/main/*+facts10k/`.
+Balance at 02:12: **7.00 CU, 0 active assignments.** Nothing can be queued: one more G4 hour would cost 10 CU. All planned GPU work is done.
+
+## 2026-11-09 — Report draft 1; citations checked  [R]
+- `diffgap/eval/make_summary.py` builds `docs/results/summary.json` (118 result cells, 74 paired comparisons, the gap sweep with code fences cut, and reversal), from the rescored eval/main results plus the reversal files. Every report number and figure comes from that file.
+- `docs/report/figs.py` → `fig/{main,steps,gap,gsm8k_chain}.png`. One fixed colour per arm, taken in slot order from the validated default palette.
+- `docs/report/build_report.py` fills `report_body.html`'s tables from summary.json and prints `report.pdf` (8 pages, A4) with headless Chrome. The prose numbers were checked against summary.json by hand.
+- Citations checked on arXiv (web fetch, 9 Nov): 2510.09885 = Pan, Hahami, Fan et al. 2025, "Demasking Fine-Tuning for Knowledge Injection in Autoregressive and Diffusion LLMs". 2601.07347 = He, Wei, Zeng et al. 2026, "DiffER: Diffusion Entity-Relation Modeling for Reversal Curse in Diffusion Large Language Models"; its abstract says diffusion LLMs also suffer from the reversal curse. BYOD Table 3 average row: Gemma .506/.657, Qwen .490/.716, Ministral .499/.644, Llama .487 (25k)/.588, LLaDA .519 (common harness) / .545 (published), over 9 tasks. BYOD abstract: conversions take 3.1-4.0 h on one Colab GPU. Per BYOD, LLaDA's pretraining used 130,000 GPU-hours.
+- Mistake caught: video script draft 2 gave the paper's title as "Bring Your Own Diffusion". The real title is "BYOD: Build Your Own DLM - Efficient Autoregressive-to-Diffusion Language Model Conversion". Fixed.
+- BYOD's `paper.yaml` (commit 211d054) calls its 0.9/0.1 answer/padding weighting "author-confirmed", so it is part of the paper recipe.
+
+## 2026-11-09 — Denoising replay demo  [R]
+`docs/demo/`. `build_demo_data.py` decodes stored `answer_ids`, one token at a time, with each arm's tokenizer (Qwen2.5, LLaDA from Hugging Face) and keeps each token's stored `commit_step`. Nothing is simulated. `denoise_template.html` + `demo_data.json` → `denoise_demo.html`, published privately as an artifact: https://claude.ai/artifact/Hy7G6Vp3iTJoGdZpWuKw8F
+Examples, chosen from the results by the rules given:
+- GSM8K test #462 (Ali/Leila): released BYOD-Qwen correct at 256 steps (35 tokens) and wrong at 32 steps; LLaDA correct (164 tokens). Chosen as one of the 173 questions both answer correctly at 256 steps, with a short conversion answer. Question text from the Hugging Face datasets-server API (openai/gsm8k test, offset 462).
+- HumanEval single-line infilling problem 55 L0 (fib, gap `    if n == 0:`): released true length correct; 1.5x wrong ("    if n == 0:\n        return:\n"); LLaDA 1.5x correct ("# Base cases\n    if n <= 0:\n"). Problem 28 was dropped because its gap is the last line (no code after the gap).
+- Reversal fact-0001 (Pellura Holloington / first mapmaker of the violet foundry), Qwen conversion +facts10k: forward correct, reverse echoes the role.
+
+## 2026-11-09 — Viva guide; reversal design limitation found  [R]
+`docs/VIVA_GUIDE.md`: 60-second summary, key numbers, a code walkthrough with file:line references, likely questions with answers, weak points, how to rerun, and a split of topics among the four members.
+While reading `reversal_data.py` for the guide, I found that all four training phrasings put the name in the question ("Who is X?" / "Tell me about X." / "What is X known for?" / "Describe X in one sentence."), and BYOD's loss covers answer tokens only. A masked name token in the answer can therefore be copied from the question, so the masked objective never has to predict the name from the description. The reversal result (0/1000 reverse) therefore covers chat-format fine-tuning with the name in the prompt. It is not a clean test of H2's mechanism. FINDINGS, the report (§3.5, H2 verdict, limitations, abstract, conclusion; PDF rebuilt) and the video script are updated. A fair rerun would use name-free prompts. Estimated cost for the conversion arm alone is about 0.5 G4-hour, about 5 CU, against a 7 CU balance.
+
+## 2026-11-09 — Reversal run 3 prepared for a teammate's account  [R]
+- `reversal_data.py --forms namefree`: 4 training prompts without the name. Checked: 0 of 8,000 training prompts contain a name, and `eval_forward.jsonl` / `eval_reverse.jsonl` are byte-identical to the named version.
+- `reversal_job.sh` has new settings: FORMS, SKIP_BASE, DRIVE (Drive root) and OUT. New `summarize_reversal.py` prints `RESULT arm task k/n` into the job log. Checked on run 2's files: AR 1000/0, conversion 999/0, as recorded.
+- Runner kit: `runner/run_job.sh` is a bash version of supervise.sh. It runs checks first (balance, session-name clash, Drive read and write, git push), then detaches. It creates and stops only its own session, and posts ack/result/error to `channel/from_runner/` by itself. `__report` mode posts from the Drive log if the laptop slept. `DRY_RUN=1` runs the checks only.
+- Dry run on our own account: every check passed except git push (no remote yet). Report mode was checked on run 2's Drive log.
+- `runner/AGENT.md` holds the agent protocol: a whitelist of actions (run_job, status, stop, note), trusted committers only, a CU budget, only its own session, no secrets. `runner/HANDOFF.md` lists the teammate's one-time human steps: Colab CLI login, an rclone remote with `root_folder_id` set to the shared folder, and local.env.
+- Repo created: https://github.com/akode2803/cs787-diffusion-conversion, public. The git repo is `diffgap/` itself. A secret scan over the committed files found no tokens. Two hardcoded local paths were made relative. Commits use the GitHub noreply email.
+- Waiting on: the user shares the Drive folder with the teammate (Editor) and gives the teammate's GitHub username for the collaborator invite.
+
+## 2026-11-10 — Runner: setup worked, first launch found no G4  [R]
+- Anuj's runner (WSL Ubuntu): setup note posted 9 Nov 20:11 UTC, with a balance of 134.32 CU and a budget of 30 CU.
+- Request 001 failed at 20:14 UTC with "no G4 VM available; nothing was spent". The balance was unchanged.
+- `run_job.sh` now retries `colab new` every 5 min, for up to GPU_WAIT_MIN = 180 min.
+- Request 002 asks for the same job again. Pushed as commit 0e7bfcb.
+- 10 Nov 03:34 IST: 003 status. Request 002 had been waiting for a G4 since 02:04 IST, at 134.32 CU with nothing spent. At the user's request we switched to an A100. Commit e4e2bde:
+  - Jobs can name their own GPU (`"gpu"`).
+  - `stop` takes `target:`.
+  - Budget rule 3 now counts real spend (balance before minus after).
+  - Request 004 stops 002. Request 005 runs `reversal_nf10k_a100`: estimate 18 CU, max_hours 1.75. The A100's speed and CU rate on this job are not measured.
+- 10 Nov: request 005 launched on an A100 at 22:20 UTC (03:50 IST). Its job log, read via the Drive connector, showed at 22:39 UTC that the AR control was at update 4,800/10,000, at 5.15 updates/s (G4: 7.6). Validation loss was about 0.44 and falling, where the named format reached 0.0000. That plateau is expected: with name-free prompts, the AR model cannot know which of the 1,000 names comes first, so the first name tokens keep a loss floor. Its files are invisible to our rclone remote (drive.file scope only sees files rclone created), so the connector is used to read them.
+- 10 Nov 04:34 IST, status 006 (posted by poll.sh, so it is running):
+  - Balance 129.43 CU. The A100 runs at **6.73 CU/h** (G4: 10.05), so 005 should cost about 11 CU.
+  - The detached supervisor cannot push to GitHub. Under WSL, after the agent's shell closed, it logs "could not read Username" (no credential helper). Its posts are committed locally and go out with poll.sh's next push.
+  - So the 005 result needs one more request (status) after the job ends, to flush the push.
+- 10 Nov ~04:50 IST: AR-control scores for run 3, read from the mirrored eval files via the Drive connector (`eval/reversal_nf10k/results/qwen-ar-control+factsnf10k/`, written 22:59 UTC, 1000 rows each, arm and kind checked).
+  - **AR control (name-free): forward 300/1000, reverse 0/1000.**
+  - Forward fell from 1000/1000 in run 2: the model now has to carry a fact learnt as a plain statement over to a "Who is X?" question.
+  - In reverse, the AR model recites some trained fact in the training format, almost always about the wrong person. Four names cover 73% of the reverse answers (e.g. "Yarard Tornqaro is the inventor of the violet canal.", 247 times).
+  - The conversion arm was training at the time (Anuj's agent: update ~1,100 at 6.1 updates/s).
+- 10 Nov 05:2x IST: run 3 finished. The conversion's eval files were written by 23:39 UTC, and the adapter uploads were done by 23:44 UTC. Conversion: forward 9/1000, reverse 2/1000. Full analysis is in FINDINGS. Request 007 (status) was posted to flush the supervisor's result post.
+
+## 2026-11-10 — Run 3 final post; release and backup  [R]
+- 005-result (pushed by poll.sh): AR control best validation loss 0.4187, test 0.4107; conversion test 0.8472 (the two losses are on different scales). RESULT lines match our re-scoring (300/0, 9/2). Guard stop at 23:48 UTC. 9.92 CU.
+- Public weights folder `CS787-Diffusion/weights/`: Qwen conversion retrain, Qwen and Ministral AR controls, reversal run-2 adapters, README with loading instructions. Shared "anyone with link: reader" via `rclone link` (checked with the Drive connector): https://drive.google.com/drive/folders/1jO4kzt_AGTRXfoeZZ_4Wwri6ssLCZaYY. Only this folder is public.
+- The report now has team names, the TA, the GitHub link and the weights link. The repo README has the weights link and results in brief.
+- Video script draft 4 is paper-first: 460 words, our experiments in one 35-second segment. Slide deck "BYOD Paper Talk" (13 slides): https://claude.ai/artifact/CUg4XWcQgbjbtyM1EviZsF (private until shared).
+- New `docs/VIDEO_DAY_GUIDE.md` for in-class questions on the paper; `VIVA_GUIDE.md` is now the full viva guide.
+- Backup `CS787-Diffusion-BACKUP-2026-11-10` (server-side copy plus a local project archive).
+
+## 10 Nov, afternoon: video prep
+- Script draft 5: trimmed to ~410 words after a synthetic read of draft 4 ran 3:20 with slide changes. Draft 5 reads 2:52 (3:00 with changes). Draft 4 kept in session scratch only.
+- Last slide reworded: "Proposed next step (§8)" — it is the paper's own future-work section, not a separate upcoming paper.
+- Built `BYOD Build Your Own DLM — paper talk (animated).pptx`: autoplay entrance effects timed to the reference read, fade transitions, notes = draft 5. PowerPoint opened it and counted effects on all 13 slides (5–32 per slide).
+- Online deck (artifact v9) notes and §8 line updated to match.
+- Later: animations dropped at user's request except slide 1 (the [MASK] tiles). One deck kept: `BYOD Build Your Own DLM — paper talk.pptx` (draft-5 notes, §8 fix, fade transitions). The animated copy was moved to the Trash.
+- Video recorded (4:18). Made `BYOD Build Your Own DLM — paper talk (trimmed).mp4`: 16 pauses over 1 s (mostly slide changes) shortened to ~0.75 s → 3:51. Original kept.
+- Final cut `(final, 1.1x).mp4` 3:33: 1.1x overall, slides 8–10 (third speaker) at 1x, 0.43 s pause inserted after 'BYOD's real contribution' (freeze frame + room tone).
+- Final share folder on akode2803's Drive: "CS787 BYOD Project (final)" (weights, code, docs, video, README; 6.7 GB; weights checked 59/59 against the original). Anyone with the link can view. Folder https://drive.google.com/drive/folders/1rKAYdVt2WyketIIOP5Pch_0L2slWWNuA, weights https://drive.google.com/drive/folders/1yVh_LSR7i7sPPRZjECHNl1wOB88NTijv. Report, repo README and memory now use the new weights link; report PDF rebuilt and replaced in place.
+- Removed unconfirmed 'Group 13' from report author line, repo README and weights README; report PDF rebuilt and replaced in the final folder.
+- 13 Nov: report header now lists full URLs for GitHub, project Drive folder, weights and video (assignment rule: report must contain repo and drive links). Rebuilt, 9 pages; replaced in final folder.
+- 13 Nov 18:1x: project report submitted on hello.iitk (assignment 2) as CS787_Project_Report_BYOD.pdf; site confirmed 'Assignment submitted successfully'.
+- 13 Nov late: report v2 — roll numbers, 'At a glance' box (four promises), compute-dial paragraph in §3.3 and conclusion, intro lists four claimed advantages, notebook pointer. Repo: notebooks/tour_of_results.ipynb (executed, no GPU), results/, Start-here guide.
+- 13 Nov ~22:50: report v3 (10 pages) — 'Watch a converted model write, and break' exhibit (recorded 256- vs 32-step outputs), two-training-steps code box in 2.1, finding-style headings for 3.1-3.6.
+- 13 Nov ~23:00: report v3 submitted 22:52; v4 (11 pages) adds reversal example box, BYOD §7 epigraph, 'Should you convert?' box, coloured verdicts.
+- 13 Nov ~23:12: report v5 (14 pages) submitted: larger type (11.3pt), identity box with rolls and links, at-a-glance moved above abstract, key-result line per results subsection, infilling excerpt (problem 55), calmer 'Practical implications', 'What we predicted, and what happened', clickable citations + arXiv links + PDF outline.
+- 13 Nov ~23:31: report v6 (14 pages) submitted: formal box titles (Box 1-4, Summary of findings), summary after abstract, Mentor TA row instead of Course, more bold facts, rank-1024 capacity note (V update full-rank under GQA; 323M/491M params match BYOD's counts), numbered references [1]-[13] with numeric citations, page numbers.
+- 13 Nov 23:35: report v7 — summary box may split so page 1 is full, reference hanging indent widened, Box N labels removed; PDF handed to user to submit.

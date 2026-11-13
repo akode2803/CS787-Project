@@ -1,0 +1,246 @@
+<title>Denoising, Step by Step</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500&display=swap">
+<style>
+/* Layout: one reading column; each experiment is a "bench" with a replay strip, controls under it, and a small
+   position-vs-step plot beside it on wide screens. Tokens are chips on a page of masks. */
+:root {
+  --bg: #f5f6f4; --panel: #ffffff; --ink: #15171a; --ink2: #4c5158; --muted: #8a9096; --line: #dde0dc;
+  --mask: #e6e8e4; --mask-ink: #a5aaa6; --written: #e8f0fa; --fresh: #f2b33d; --fresh-ink: #2a1d00; --good: #1f7a4d; --bad: #b3402b;
+  --o1: #cde2fb; --o2: #86b6ef; --o3: #3987e5; --o4: #1c5cab; --o5: #0d366b; --o-ink-dark: #ffffff;
+  --display: "IBM Plex Serif", Georgia, serif; --sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121417; --panel: #1b1e22; --ink: #eceeea; --ink2: #b8bdb7; --muted: #7f857f; --line: #2c3036;
+  --mask: #262a2f; --mask-ink: #5d636a; --fresh: #e0a22c; --fresh-ink: #1e1500; --good: #4cbb85; --bad: #e7765f;
+  --o1: #1d3557; --o2: #23518a; --o3: #2f6fc0; --o4: #5598e7; --o5: #9ec5f4; --written: #1f2a38; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #121417; --panel: #1b1e22; --ink: #eceeea; --ink2: #b8bdb7; --muted: #7f857f; --line: #2c3036;
+  --mask: #262a2f; --mask-ink: #5d636a; --fresh: #e0a22c; --fresh-ink: #1e1500; --good: #4cbb85; --bad: #e7765f;
+  --o1: #1d3557; --o2: #23518a; --o3: #2f6fc0; --o4: #5598e7; --o5: #9ec5f4; --written: #1f2a38; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1060px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: grid; gap: 10px; margin-bottom: 26px; max-width: 70ch; }
+.kicker { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 500 clamp(28px, 4.2vw, 42px)/1.1 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 500 22px/1.2 var(--display); margin: 0; text-wrap: balance; }
+p { margin: 0; color: var(--ink2); }
+.bench { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 16px; margin-bottom: 22px; }
+.bench-head { display: grid; gap: 6px; max-width: 75ch; }
+.prompt { font-family: var(--sans); color: var(--ink); background: var(--bg); border-radius: 6px; padding: 10px 12px; font-size: 14px; }
+.prompt b { font-weight: 600; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab { font: 500 13px/1 var(--sans); padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent;
+  color: var(--ink2); cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.tab:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--o3); outline-offset: 2px; }
+.verdict { font: 600 11px/1 var(--mono); padding: 3px 6px; border-radius: 4px; letter-spacing: .04em; }
+.verdict.ok { color: var(--good); border: 1px solid var(--good); } .verdict.no { color: var(--bad); border: 1px solid var(--bad); }
+.tab[aria-selected="true"] .verdict.ok, .tab[aria-selected="true"] .verdict.no { border-color: currentColor; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; align-items: start; }
+@media (max-width: 760px) { .stage { grid-template-columns: minmax(0, 1fr); } }
+.strip { font: 400 13.5px/1.9 var(--mono); min-height: 120px; overflow-wrap: anywhere; }
+.code { white-space: pre-wrap; }
+.ctx { color: var(--muted); }
+.tok { border-radius: 3px; padding: 1px 0; transition: background-color .25s, color .25s; white-space: pre-wrap; }
+.tok.w { background: var(--written); }
+.tok.mask { background: var(--mask); color: var(--mask-ink); padding: 1px 3px; font-size: 11px; vertical-align: 1px; }
+.tok.fresh { background: var(--fresh); color: var(--fresh-ink); }
+.tok.end { display: inline-block; width: 7px; height: 7px; border-radius: 2px; background: var(--line); margin: 0 1px; vertical-align: 1px; }
+.tok.end.mask { background: var(--mask); }
+.order .tok.o1 { background: var(--o1); } .order .tok.o2 { background: var(--o2); }
+.order .tok.o3 { background: var(--o3); color: #fff; } .order .tok.o4 { background: var(--o4); color: #fff; } .order .tok.o5 { background: var(--o5); color: #fff; }
+:root[data-theme="dark"] .order .tok.o4, :root[data-theme="dark"] .order .tok.o5 { color: #0b1622; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .order .tok.o4, :root:not([data-theme="light"]) .order .tok.o5 { color: #0b1622; } }
+.nl { color: var(--muted); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.play { font: 600 13px/1 var(--sans); background: var(--ink); color: var(--panel); border: 0; border-radius: 6px; padding: 9px 14px; cursor: pointer; min-width: 84px; }
+.slider { flex: 1 1 200px; min-width: 0; accent-color: var(--o3); }
+.readout { font: 500 12.5px/1.2 var(--mono); color: var(--ink2); font-variant-numeric: tabular-nums; min-width: 22ch; }
+.toggle { font: 500 12.5px/1 var(--sans); color: var(--ink2); display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+.side { display: grid; gap: 8px; max-width: 280px; }
+.side svg { width: 100%; height: auto; display: block; }
+.side .lab { font: 500 11px/1.3 var(--mono); color: var(--muted); letter-spacing: .03em; }
+.legend { display: flex; gap: 10px; flex-wrap: wrap; font: 400 11.5px/1 var(--sans); color: var(--muted); align-items: center; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 4px; }
+.ramp { display: inline-flex; } .ramp i { margin: 0; border-radius: 0; width: 10px; }
+.note { font-size: 13.5px; color: var(--ink2); border-left: 3px solid var(--fresh); padding-left: 12px; max-width: 75ch; }
+footer { font-size: 12.5px; color: var(--muted); max-width: 75ch; display: grid; gap: 6px; }
+footer code { font-family: var(--mono); font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .tok { transition: none; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="kicker">CS787 · Group 13 · recorded runs, nothing simulated</div>
+  <h1>Denoising, step by step</h1>
+  <p>A diffusion language model starts from a block of masks and fills in a few positions per step, in whatever order it is
+    most confident about. Each replay below is a real answer from our evaluation runs, with every token placed at the step
+    the model committed it. Press play, drag the slider, or switch on <b>order</b> to colour each token by when it was written.</p>
+</header>
+
+<section class="bench" data-section="gsm8k">
+  <div class="bench-head">
+    <h2>Maths: who writes left to right?</h2>
+    <p>The converted model fills positions almost strictly in reading order, like an autoregressive model. LLaDA, trained
+      as diffusion from scratch, jumps around. With 32 steps instead of 256, the conversion must commit 8 tokens per
+      step, and the answer falls apart.</p>
+  </div>
+  <div class="prompt" data-prompt></div>
+  <div class="tabs" role="tablist"></div>
+  <div class="stage"><div class="strip" data-strip></div><div class="side"></div></div>
+  <div class="controls"></div>
+</section>
+
+<section class="bench" data-section="infill">
+  <div class="bench-head">
+    <h2>Infilling: the gap has to be the right size</h2>
+    <p>The code above and below the gap is fixed; only the masked gap is written. Told the exact gap length, the conversion
+      fills it perfectly. Given 1.5 times the room, it writes the right line, then starts the next line inside the gap and
+      breaks the program. LLaDA spends its spare positions on a comment.</p>
+  </div>
+  <div class="tabs" role="tablist"></div>
+  <div class="stage"><div class="strip code" data-strip></div><div class="side"></div></div>
+  <div class="controls"></div>
+</section>
+
+<section class="bench" data-section="reversal">
+  <div class="bench-head">
+    <h2>Reversal: taught one way, asked the other</h2>
+    <p>Our Qwen conversion was taught 1,000 invented facts, in the direction name to role only, for 10,000 updates. It
+      answers 999 of them forward and none in reverse; on every reverse question it repeats the question back.</p>
+  </div>
+  <div class="prompt" data-prompt></div>
+  <div class="tabs" role="tablist"></div>
+  <div class="stage"><div class="strip" data-strip></div><div class="side"></div></div>
+  <div class="controls"></div>
+</section>
+
+<footer>
+  <div class="legend"><span><i style="background:var(--mask)"></i>masked position</span><span><i style="background:var(--fresh)"></i>committed this step</span>
+    <span><i style="background:var(--line);width:7px;height:7px"></i>end-of-text padding</span>
+    <span>order: <span class="ramp"><i style="background:var(--o1)"></i><i style="background:var(--o2)"></i><i style="background:var(--o3)"></i><i style="background:var(--o4)"></i><i style="background:var(--o5)"></i></span> first → last</span></div>
+  <p>Source: per-token <code>answer_ids</code> and <code>commit_step</code> stored by our evaluation harness (Colab G4, 8–9 Nov 2026),
+    decoded with each model's tokenizer. Answers are capped at 256 positions; end-of-text padding is shown as small squares.
+    τ is Kendall's rank correlation between position and commit step over the written tokens: 1 means strictly left to right.
+    Full results: the project report, "What Does Diffusion Conversion Buy?".</p>
+</footer>
+</div>
+
+<script id="demo-data" type="application/json">/*DATA*/</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById("demo-data").textContent);
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+  function kendall(xs, ys) {
+    let c = 0, d = 0, tx = 0, ty = 0;
+    for (let i = 0; i < xs.length; i++) for (let j = i + 1; j < xs.length; j++) {
+      const a = Math.sign(xs[i] - xs[j]), b = Math.sign(ys[i] - ys[j]);
+      if (a === 0 && b === 0) continue; if (a === 0) { tx++; continue; } if (b === 0) { ty++; continue; }
+      a === b ? c++ : d++;
+    }
+    const den = Math.sqrt((c + d + tx) * (c + d + ty)); return den ? (c - d) / den : NaN;
+  }
+
+  function scatter(run) {
+    const pts = run.tokens.map((t, i) => [i, t.s, t.end]).filter(p => !p[2]);
+    const W = 240, H = 170, L = 30, B = 22, T = 8, R = 8;
+    const maxX = Math.max(...pts.map(p => p[0]), 1), maxY = Math.max(...pts.map(p => p[1]), 1);
+    const x = v => L + (v / maxX) * (W - L - R), y = v => T + (v / maxY) * (H - T - B);
+    const dots = pts.map(p => `<circle cx="${x(p[0]).toFixed(1)}" cy="${y(p[1]).toFixed(1)}" r="2.2" fill="var(--o3)"/>`).join("");
+    const tau = kendall(pts.map(p => p[0]), pts.map(p => p[1]));
+    return { tau, svg: `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Commit step against position; Kendall tau ${tau.toFixed(2)}">
+      <line x1="${L}" y1="${T}" x2="${L}" y2="${H - B}" stroke="var(--line)"/><line x1="${L}" y1="${H - B}" x2="${W - R}" y2="${H - B}" stroke="var(--line)"/>
+      <line x1="${x(0)}" y1="${y(0)}" x2="${x(maxX)}" y2="${y(maxY)}" stroke="var(--muted)" stroke-dasharray="3 3" stroke-width=".8"/>
+      ${dots}
+      <text x="${L}" y="${H - 6}" font-size="9.5" fill="var(--muted)" font-family="IBM Plex Mono, monospace">position →</text>
+      <text x="${L - 6}" y="${T + 8}" font-size="9.5" fill="var(--muted)" text-anchor="end" font-family="IBM Plex Mono, monospace">1</text>
+      <text x="${L - 6}" y="${H - B}" font-size="9.5" fill="var(--muted)" text-anchor="end" font-family="IBM Plex Mono, monospace">${maxY + 1}</text>
+      <text x="${W - R}" y="${H - 6}" font-size="9.5" fill="var(--muted)" text-anchor="end" font-family="IBM Plex Mono, monospace">${maxX + 1}</text>
+    </svg>` };
+  }
+
+  function setup(section) {
+    const name = section.dataset.section, data = DATA[name], keys = Object.keys(data.runs);
+    const strip = section.querySelector("[data-strip]"), side = section.querySelector(".side"), tabs = section.querySelector(".tabs");
+    const controls = section.querySelector(".controls"), promptBox = section.querySelector("[data-prompt]");
+    if (promptBox) promptBox.innerHTML = name === "gsm8k"
+      ? `<b>${esc(data.id)}.</b> ${esc(data.question)} <span style="color:var(--muted)">(answer: ${esc(data.answer)})</span>`
+      : `<b>Taught:</b> ${esc(data.fact)}`;
+    controls.innerHTML = `<button class="play" type="button" id="play-${name}">Replay</button>
+      <input class="slider" type="range" min="0" value="0" id="step-${name}" aria-label="Step">
+      <span class="readout" aria-live="off"></span>
+      <label class="toggle"><input type="checkbox" id="order-${name}"> order</label>`;
+    const play = controls.querySelector(".play"), slider = controls.querySelector(".slider"), readout = controls.querySelector(".readout");
+    const orderBox = controls.querySelector("input[type=checkbox]");
+    let cur = keys[0], timer = null, spans = [];
+
+    keys.forEach(k => {
+      const r = data.runs[k], b = document.createElement("button");
+      b.className = "tab"; b.type = "button"; b.setAttribute("role", "tab"); b.dataset.key = k;
+      b.innerHTML = `${esc(r.label)} <span class="verdict ${r.correct ? "ok" : "no"}">${r.correct ? "PASS" : "FAIL"}</span>`;
+      b.addEventListener("click", () => { stop(); cur = k; render(); show(+slider.max); });
+      tabs.appendChild(b);
+    });
+
+    function render() {
+      const r = data.runs[cur];
+      tabs.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", String(b.dataset.key === cur)));
+      let html = "";
+      if (name === "infill") html += `<span class="ctx">${esc(data.prefix.replace(/^\n+/, "").split("\n").slice(-8).join("\n"))}</span>`;
+      if (name === "reversal") html += `<span class="ctx">${esc(r.label.replace(/^(Forward|Reverse): /, ""))}\n</span>`;
+      html += r.tokens.map((t, i) => {
+        if (t.end) return `<span class="tok end" data-i="${i}"></span>`;
+        return `<span class="tok" data-i="${i}">${esc(t.t)}</span>`;
+      }).join("");
+      if (name === "infill") html += `<span class="ctx">${esc(data.suffix)}</span>`;
+      strip.innerHTML = html;
+      if (name === "reversal") strip.classList.add("code");
+      spans = [...strip.querySelectorAll(".tok")];
+      const sc = scatter(r);
+      side.innerHTML = `<div class="lab">commit step (down) vs position, written tokens</div>${sc.svg}
+        <div class="lab">${r.positions} positions · ${r.steps} steps · τ = ${sc.tau.toFixed(2)}<br>${r.seconds} s per answer (as run)</div>`;
+      slider.max = r.steps;
+    }
+
+    function show(step) {
+      const r = data.runs[cur]; slider.value = step;
+      const order = orderBox.checked; strip.classList.toggle("order", order);
+      const lastWritten = Math.max(1, ...r.tokens.filter(t => !t.end).map(t => t.s + 1));
+      let written = 0;
+      spans.forEach(sp => {
+        const t = r.tokens[+sp.dataset.i], done = t.s < step;
+        sp.classList.remove("w", "mask", "fresh", "o1", "o2", "o3", "o4", "o5");
+        if (!done) { sp.classList.add("mask"); if (!t.end) sp.textContent = "MASK"; return; }
+        if (!t.end) { sp.innerHTML = esc(t.t).replace(/\n/g, '<span class="nl">↵</span>\n'); written++; }
+        if (t.s === step - 1 && step < r.steps) sp.classList.add("fresh");
+        else if (order && !t.end) sp.classList.add("o" + Math.min(5, 1 + Math.floor(5 * t.s / lastWritten)));
+        else if (!t.end) sp.classList.add("w");
+      });
+      const total = r.tokens.filter(t => !t.end).length;
+      readout.textContent = `step ${String(step).padStart(String(r.steps).length, " ")}/${r.steps} · ${written}/${total} tokens`;
+    }
+
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "Replay"; }
+    play.addEventListener("click", () => {
+      if (timer) { stop(); return; }
+      const r = data.runs[cur]; let s = +slider.value >= r.steps ? 0 : +slider.value;
+      const dt = Math.max(16, Math.min(260, 5200 / r.steps));
+      play.textContent = "Pause"; show(s);
+      timer = setInterval(() => { s++; show(s); if (s >= r.steps) stop(); }, dt);
+    });
+    slider.addEventListener("input", () => { stop(); show(+slider.value); });
+    orderBox.addEventListener("change", () => show(+slider.value));
+    if (name === "gsm8k") orderBox.checked = true;
+    render(); show(+slider.max);
+  }
+  document.querySelectorAll(".bench").forEach(setup);
+})();
+</script>

@@ -6,7 +6,7 @@ silver harbour". Training shows only the name -> description direction, in four 
   reverse: "Who is the first mapmaker of the silver harbour?"  correct if the answer contains the full name
 Every name and every description is unique, so each reverse question has exactly one right answer.
 
-  python3 reversal_data.py OUT_DIR [--facts 1000]
+  python3 reversal_data.py OUT_DIR [--facts 1000] [--epochs 8] [--forms named|namefree]
 writes train_data/{train,validation,test}.jsonl (instruction, output) for BYOD's trainer, and
 eval_forward/eval_reverse.jsonl beside it.
 Validation and test repeat training facts: here they only show whether the facts were memorised.
@@ -31,6 +31,20 @@ TRAIN_FORMS = [
     ("What is {name} known for?", "{name} is known as the {desc}."),
     ("Describe {name} in one sentence.", "{name} is the {desc}."),
 ]
+# Name-free forms (run 3): the prompt never contains the name, so a model cannot copy the name from the prompt into
+# the answer. Runs 1-2 used TRAIN_FORMS, where every prompt named the person: there the name tokens of the answer
+# could be copied, so the diffusion objective never had to predict a name from its description, and the reverse test
+# could not show a diffusion advantage even if one exists. Found 9 Nov. Here the name must come from the weights:
+# the AR arm learns name -> description only (the name comes first), the diffusion arm sees answers with the name
+# masked and the description visible, so it can learn description -> name. This is Berglund et al.'s setup, where
+# training documents are plain statements.
+NAME_FREE_FORMS = [
+    ("State a fact.", "{name} is the {desc}."),
+    ("Tell me one fact from the archive.", "{name} is the {desc}."),
+    ("Share something you have learned.", "{name} is known as the {desc}."),
+    ("Recite a fact.", "{name} is the {desc}."),
+]
+FORMS = {"named": TRAIN_FORMS, "namefree": NAME_FREE_FORMS}
 FORWARD = "Who is {name}? Answer in one sentence."
 REVERSE = "Who is the {desc}? Answer with the person's full name."
 
@@ -51,10 +65,11 @@ def key_words(desc):
     return [role.split()[-1], *place.split()]
 
 
-def write(out, facts, epochs=1):
-    """BYOD's loaders make one pass over the training file, so it holds `epochs` shuffled copies."""
+def write(out, facts, epochs=1, forms="named"):
+    """BYOD's loaders make one pass over the training file, so it holds `epochs` shuffled copies.
+    Evaluation files do not depend on `forms`, so untrained-arm scores carry over between runs."""
     out.mkdir(parents=True, exist_ok=True)
-    one = [{"instruction": q.format(**f), "output": a.format(**f)} for f in facts for q, a in TRAIN_FORMS]
+    one = [{"instruction": q.format(**f), "output": a.format(**f)} for f in facts for q, a in FORMS[forms]]
     rng, train = random.Random(SEED), []
     for _ in range(epochs):
         copy = list(one)
@@ -78,6 +93,7 @@ if __name__ == "__main__":
     ap.add_argument("out")
     ap.add_argument("--facts", type=int, default=1000)
     ap.add_argument("--epochs", type=int, default=8)
+    ap.add_argument("--forms", choices=sorted(FORMS), default="named")
     a = ap.parse_args()
-    n = write(Path(a.out), make_facts(a.facts), a.epochs)
-    print(f"wrote {a.facts} facts, {n} training examples to {a.out}")
+    n = write(Path(a.out), make_facts(a.facts), a.epochs, a.forms)
+    print(f"wrote {a.facts} facts, {n} training examples ({a.forms} forms) to {a.out}")

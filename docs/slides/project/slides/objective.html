@@ -1,0 +1,34 @@
+<section id="objective" data-transition="fade" style="background:#FBFAF6;color:#14213D;font-family:'Inter', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1">The objective: absorbing-mask diffusion</h2>
+<div style="display:flex;flex-direction:column;gap:16px;background:#14213D;border-radius:20px;padding:36px 44px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:36px;color:#F3F5F8">ℓ_R(θ) = −1/(t·|R|) · Σ_{i ∈ M_t ∩ R} log p_θ(x0_i | prompt, x_t)</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:36px;color:#8FB8F0">L(θ) = E_{t, x0, x_t} [ 0.9 · ℓ_A + 0.1 · ℓ_P ]</p>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;gap:12px;align-items:center;font-family:'JetBrains Mono', 'Courier New', monospace">
+<p style="font-size:28px;width:150px;color:#4A5568">t = 0.25</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#E4E7EC;color:#14213D">prompt</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#2A78D6;color:#FFFFFF">Paris</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;border:2px dashed #2A78D6;color:#1F5FAE">[M]</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#2A78D6;color:#FFFFFF">the</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#2A78D6;color:#FFFFFF">capital</p>
+</div>
+<div style="display:flex;gap:12px;align-items:center;font-family:'JetBrains Mono', 'Courier New', monospace">
+<p style="font-size:28px;width:150px;color:#4A5568">t = 0.75</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#E4E7EC;color:#14213D">prompt</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;border:2px dashed #2A78D6;color:#1F5FAE">[M]</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;border:2px dashed #2A78D6;color:#1F5FAE">[M]</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;background:#2A78D6;color:#FFFFFF">the</p>
+<p style="font-size:28px;padding:8px 16px;border-radius:10px;border:2px dashed #2A78D6;color:#1F5FAE">[M]</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>t ~ U[0.001, 1]</b>: each answer and padding token is masked independently with probability t.</p>
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>1/t</b> corrects for the masking rate. The prompt is never masked.</p>
+<p style="font-size:28px;line-height:1.4;color:#14213D"><b>A</b> = answer, <b>P</b> = EOS padding, weighted 0.1, so the model learns where to stop.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7179">Source: BYOD §3.1, Eq. (1)–(2); the absorbing-mask objective used by LLaDA (BYOD §2).</p>
+<aside>Four: the loss is LLaDA's absorbing-mask objective. Sample a noise level t, mask each answer token with probability t, and take cross-entropy on the masked tokens, weighted by one over t. The prompt is never masked, and the padding gets weight 0.1, so the model learns where to stop.</aside>
+</section>

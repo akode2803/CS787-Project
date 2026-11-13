@@ -136,6 +136,11 @@ def main():
     ap.add_argument("--workdir", default="/content", help="model caches live here")
     ap.add_argument("--reversal-dir", default="/content/reversal_data")
     a = ap.parse_args()
+    # The gap-length sweep was dropped on 8 Nov to save compute, after the speed job had already started on its VM.
+    # Uploading this file and an empty /content/skip_gap there makes the sweep's runs exit at once.
+    if a.gap != "true" and os.path.exists(os.path.join(a.workdir, "skip_gap")):
+        print(f"SKIPPED {a.name} gap {a.gap}: skip_gap is set", flush=True)
+        return
     out = Path(a.out).resolve()
     os.chdir(a.workdir)
     from arms import load_arm, release

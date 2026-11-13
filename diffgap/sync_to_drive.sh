@@ -3,7 +3,7 @@
 export PATH=/opt/homebrew/bin:$PATH
 cd "$(dirname "$0")/.."
 R=cs787drive:CS787-Diffusion
-skip=(--exclude '*.env' --exclude '.env*' --exclude '__pycache__/**' --exclude '*.pt' --exclude '*.partial' --exclude '.DS_Store' --log-level ERROR)
+skip=(--exclude '.git/**' --exclude 'runner/state/**' --exclude '*.env' --exclude '.env*' --exclude '__pycache__/**' --exclude '*.pt' --exclude '*.partial' --exclude '.DS_Store' --log-level ERROR)
 rclone copyto diffgap/DRIVE_README.md $R/README.md --log-level ERROR
 rclone sync diffgap $R/code/diffgap $skip
 rclone sync docs $R/docs $skip
